@@ -1,1 +1,1 @@
-# ASP-Booking-API
+InsightBridge is an AI-powered knowledge chatbot that delivers fast, contextual answers from public and uploaded documents. Built with React, Node.js, and the OpenAI Assistant API, it scales for multiple users, supports quick retrieval, and provides responses in under 1.5 seconds.
