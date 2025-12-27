@@ -1,0 +1,51 @@
+name: Deploy (master)
+
+on:
+  push:
+    branches: [master]
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build & push API
+        run: |
+          ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+          REGISTRY="${ACCOUNT_ID}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com"
+          docker build -f apps/api/Dockerfile -t "$REGISTRY/jira-clone-api:${{ github.sha }}" -t "$REGISTRY/jira-clone-api:latest" .
+          docker push "$REGISTRY/jira-clone-api:${{ github.sha }}"
+          docker push "$REGISTRY/jira-clone-api:latest"
+
+      - name: Build & push WEB
+        run: |
+          ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+          REGISTRY="${ACCOUNT_ID}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com"
+          docker build -f apps/web/Dockerfile -t "$REGISTRY/jira-clone-web:${{ github.sha }}" -t "$REGISTRY/jira-clone-web:latest" .
+          docker push "$REGISTRY/jira-clone-web:${{ github.sha }}"
+          docker push "$REGISTRY/jira-clone-web:latest"
+
+      - name: SSH deploy on EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            set -e
+            cd ~/app
+            docker compose pull
+            docker compose up -d
+            docker image prune -f

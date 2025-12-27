@@ -8,6 +8,12 @@ module.exports = {
     '**/build/**',
     '**/coverage/**',
     '**/.turbo/**',
+    // Config files - không cần ESLint check, chỉ cần Prettier format
+    '**/.eslintrc.*',
+    '**/.lintstagedrc.*',
+    '**/next.config.*',
+    '**/jest.config.*',
+    '**/tailwind.config.*',
   ],
 
   env: { es2022: true },
@@ -55,4 +61,3 @@ module.exports = {
     },
   ],
 };
-
