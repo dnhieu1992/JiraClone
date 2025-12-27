@@ -5,10 +5,10 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "type-check": "tsc --project tsconfig.typecheck.json --noEmit"
   },
   "devDependencies": {
     "typescript": "^5.3.3"
   }
 }
-

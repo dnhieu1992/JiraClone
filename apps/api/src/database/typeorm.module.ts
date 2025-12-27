@@ -24,9 +24,7 @@ export class DatabaseModule {
         ConfigModule,
         TypeOrmModule.forRootAsync({
           inject: [ConfigService],
-          useFactory: async (
-            config: ConfigService,
-          ): Promise<TypeOrmModuleOptions> => {
+          useFactory: (config: ConfigService): TypeOrmModuleOptions => {
             return {
               type: 'mysql',
               host: config.get<string>('DB_HOST') || 'localhost',

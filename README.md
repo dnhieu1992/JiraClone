@@ -10,8 +10,7 @@ JiraClone/
 │   ├── web/          # NextJS frontend application
 │   └── api/          # NestJS backend API
 ├── packages/
-│   ├── shared/       # Shared types and utilities
-│   └── config/       # Shared ESLint and TypeScript configurations (optional)
+│   └── shared/       # Shared types and utilities
 └── pnpm-workspace.yaml
 ```
 
@@ -69,7 +68,6 @@ pnpm build:api
 ### Packages
 
 - **@jira-clone/shared**: Shared types and utilities used across apps
-- **@jira-clone/config**: Shared ESLint and TypeScript configurations
 
 ## Technology Stack
 
