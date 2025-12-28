@@ -12,7 +12,7 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   try {
     const app = await NestFactory.create(AppModule, {
-      // Cho phép app chạy ngay cả khi có lỗi trong quá trình khởi tạo module
+      // Allow app to run even if there are errors during module initialization
       abortOnError: false,
     });
 
@@ -37,7 +37,7 @@ async function bootstrap() {
       `⚠️  Note: Database connection may fail, but app will still run`,
     );
   } catch (error: unknown) {
-    // Log error nhưng không crash app
+    // Log error but don't crash app
     const errorMessage = error instanceof Error ? error.message : String(error);
     console.error(
       '⚠️  Warning: Error during app initialization:',
@@ -51,7 +51,7 @@ async function bootstrap() {
         '💡 Tip: App is running without database. Start MySQL or set DB_ENABLED=false in .env',
       );
     }
-    // Vẫn khởi động app nếu có thể
+    // Still start app if possible
   }
 }
 void bootstrap();

@@ -11,7 +11,7 @@ COPY apps/api apps/api
 RUN pnpm install --frozen-lockfile
 RUN pnpm --filter @jira-clone/api... build
 
-# Tạo bundle production self-contained cho riêng API
+# Create production self-contained bundle for API only
 RUN pnpm --filter @jira-clone/api deploy --prod /out
 
 FROM node:20-alpine AS runner

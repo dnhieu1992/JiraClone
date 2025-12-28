@@ -7,7 +7,7 @@ import { DatabaseModule } from './database/typeorm.module';
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
 
-    // Database module - sẽ tự động skip nếu DB_ENABLED=false
+    // Database module - will automatically skip if DB_ENABLED=false
     DatabaseModule.forRootAsync(),
 
     HealthModule,

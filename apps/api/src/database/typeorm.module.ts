@@ -11,7 +11,7 @@ export class DatabaseModule {
       console.log(
         '⚠️  Database is disabled (DB_ENABLED=false). App will run without database.',
       );
-      // Trả về module rỗng - không load TypeORM
+      // Return empty module - don't load TypeORM
       return {
         module: DatabaseModule,
         imports: [],

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Providers from '../theme/Providers';
-import './globals.scss';
+import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Jira Clone',
