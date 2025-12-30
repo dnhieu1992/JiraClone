@@ -1,0 +1,20 @@
+{
+  "realm": "jira",
+  "enabled": true,
+  "clients": [
+    {
+      "clientId": "jira-web",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": false,
+      "redirectUris": [
+        "http://localhost:3000/api/auth/callback/keycloak"
+      ],
+      "webOrigins": [
+        "http://localhost:3000"
+      ]
+    }
+  ]
+}
