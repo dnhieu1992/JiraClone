@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Button,
   Checkbox,
-  Container,
+  Box,
   Divider,
   FormControlLabel,
   Link,
@@ -13,6 +13,7 @@ import {
 } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import { z } from 'zod';
+import { JiraSkeletonBackdrop } from '@/components/ui/JiraSkeletonBackdrop';
 
 // Zod schema for validation
 const loginSchema = z.object({
@@ -44,10 +45,44 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#f4f5f7]">
-      <Container maxWidth="sm">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="bg-white rounded-lg p-8 shadow-sm">
+    <Box
+      sx={{
+        position: 'relative',
+        width: '100vw',
+        height: '100vh',
+        overflow: 'hidden',
+      }}
+    >
+      {/* Backdrop */}
+      <JiraSkeletonBackdrop />
+
+      {/* Login Modal - Center of page */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '16px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '25vw',
+          height: 'calc(100vh - 32px)',
+          display: 'flex',
+          alignItems: 'stretch',
+          zIndex: 1000,
+        }}
+      >
+        <form onSubmit={handleSubmit(onSubmit)} style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
+          <Box
+            sx={{
+              bgcolor: 'white',
+              borderRadius: 2,
+              p: 4,
+              boxShadow: 3,
+              height: '100%',
+              overflowY: 'auto',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
             {/* Jira Logo */}
             <div className="flex items-center mb-8">
               <div className="w-10 h-10 bg-[#0052CC] rounded flex items-center justify-center mr-3">
@@ -269,9 +304,9 @@ export default function LoginPage() {
                 Create account
               </Link>
             </div>
-          </div>
+          </Box>
         </form>
-      </Container>
-    </div>
+      </Box>
+    </Box>
   );
 }
