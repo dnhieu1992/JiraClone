@@ -14,6 +14,7 @@ import {
 import { useForm, Controller } from 'react-hook-form';
 import { z } from 'zod';
 import { JiraSkeletonBackdrop } from '@/components/ui/JiraSkeletonBackdrop';
+import { startKeycloakLogin } from '@/features/auth/api';
 
 // Zod schema for validation
 const loginSchema = z.object({
@@ -40,8 +41,10 @@ export default function LoginPage() {
   });
 
   const onSubmit = async (data: LoginFormData) => {
-    console.log('Form data:', data);
-    // TODO: Implement login logic
+    await startKeycloakLogin({
+      email: data.email,
+      rememberMe: data.rememberMe,
+    });
   };
 
   return (
@@ -70,7 +73,10 @@ export default function LoginPage() {
           zIndex: 1000,
         }}
       >
-        <form onSubmit={handleSubmit(onSubmit)} style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          style={{ width: '100%', display: 'flex', flexDirection: 'column' }}
+        >
           <Box
             sx={{
               bgcolor: 'white',
