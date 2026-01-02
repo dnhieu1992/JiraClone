@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Box, CircularProgress, Typography } from '@mui/material';
+import { Box, CircularProgress, Typography } from '@/components/ui';
 import { handleKeycloakCallback } from '@/features/auth/api';
 
 export default function KeycloakCallbackPage() {

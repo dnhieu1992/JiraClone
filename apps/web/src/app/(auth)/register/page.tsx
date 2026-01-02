@@ -1,4 +1,4 @@
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box, Button, TextField, Typography } from '@/components/ui';
 
 export default function RegisterPage() {
   return (

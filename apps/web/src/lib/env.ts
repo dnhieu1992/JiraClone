@@ -5,8 +5,7 @@ type PublicEnv = {
   appUrl: string;
 };
 
-function getRequiredEnv(key: string): string {
-  const value = process.env[key];
+function requireEnv(value: string | undefined, key: string): string {
   if (!value) {
     throw new Error(`Missing required env: ${key}`);
   }
@@ -15,9 +14,18 @@ function getRequiredEnv(key: string): string {
 
 export function getPublicEnv(): PublicEnv {
   return {
-    keycloakUrl: getRequiredEnv('NEXT_PUBLIC_KEYCLOAK_URL'),
-    keycloakRealm: getRequiredEnv('NEXT_PUBLIC_KEYCLOAK_REALM'),
-    keycloakClientId: getRequiredEnv('NEXT_PUBLIC_KEYCLOAK_CLIENT_ID'),
+    keycloakUrl: requireEnv(
+      process.env.NEXT_PUBLIC_KEYCLOAK_URL,
+      'NEXT_PUBLIC_KEYCLOAK_URL',
+    ),
+    keycloakRealm: requireEnv(
+      process.env.NEXT_PUBLIC_KEYCLOAK_REALM,
+      'NEXT_PUBLIC_KEYCLOAK_REALM',
+    ),
+    keycloakClientId: requireEnv(
+      process.env.NEXT_PUBLIC_KEYCLOAK_CLIENT_ID,
+      'NEXT_PUBLIC_KEYCLOAK_CLIENT_ID',
+    ),
     appUrl: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
   };
 }
