@@ -1,15 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import {
-  AppBar,
-  Box,
-  Toolbar,
-  Skeleton,
-  Paper,
-  useTheme,
-  alpha,
-} from '@mui/material';
+import { AppBar, Box, Toolbar, Skeleton, Paper } from '@/components/ui';
+import { alpha, useTheme } from '@mui/material/styles';
 
 export function JiraSkeletonBackdrop() {
   const theme = useTheme();
@@ -115,4 +108,3 @@ export function JiraSkeletonBackdrop() {
     </Box>
   );
 }
-
