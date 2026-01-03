@@ -30,8 +30,8 @@ services:
     volumes:
       # import realm
       - ./realm-jira.json:/opt/keycloak/data/import/realm-jira.json:ro
-      # (optional) custom theme
-      - ./themes/jira:/opt/keycloak/themes/jira
+      # custom theme
+      - ../../keycloak/themes/jira:/opt/keycloak/themes/jira
     restart: unless-stopped
 
 volumes:

@@ -1,13 +1,14 @@
 'use client';
 
-import { Button, Box, Typography } from '@/components/ui';
+import { useEffect } from 'react';
+import { Box, Typography } from '@/components/ui';
 import { JiraSkeletonBackdrop } from '@/components/ui/JiraSkeletonBackdrop';
 import { startKeycloakLogin } from '@/features/auth/api';
 
 export default function LoginPage() {
-  const onLogin = async () => {
-    await startKeycloakLogin({});
-  };
+  useEffect(() => {
+    void startKeycloakLogin({});
+  }, []);
 
   return (
     <Box
@@ -68,16 +69,6 @@ export default function LoginPage() {
           <Typography variant="body2" className="text-[#6B778C] mb-6">
             You will be redirected to Keycloak to complete sign in.
           </Typography>
-
-          <Button
-            type="button"
-            fullWidth
-            variant="contained"
-            onClick={onLogin}
-            className="bg-[#0052CC] text-white py-3 rounded normal-case font-semibold hover:bg-[#0065FF]"
-          >
-            Continue with Keycloak
-          </Button>
         </Box>
       </Box>
     </Box>

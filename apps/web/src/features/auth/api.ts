@@ -179,6 +179,22 @@ export function clearStoredAuth(): void {
   localStorage.removeItem(AUTH_STORAGE_KEY);
 }
 
+export function startKeycloakLogout(): void {
+  const { issuer, clientId, redirectUri } = getAuthConfig();
+  const postLogoutRedirectUri = redirectUri.replace('/keycloak/callback', '/login');
+  const auth = getStoredAuth();
+  clearStoredAuth();
+
+  const url = new URL(`${issuer}/protocol/openid-connect/logout`);
+  url.searchParams.set('client_id', clientId);
+  url.searchParams.set('post_logout_redirect_uri', postLogoutRedirectUri);
+  if (auth?.idToken) {
+    url.searchParams.set('id_token_hint', auth.idToken);
+  }
+
+  window.location.assign(url.toString());
+}
+
 async function refreshStoredAuth(): Promise<AuthStorage | null> {
   const stored = getStoredAuthWithStorage();
   if (!stored?.auth.refreshToken) {

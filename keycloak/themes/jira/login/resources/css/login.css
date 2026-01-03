@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');
+
+:root {
+  --jira-blue: #0c66e4;
+  --jira-blue-dark: #094ab2;
+  --jira-text: #172b4d;
+  --jira-muted: #5e6c84;
+  --jira-border: #c7d1db;
+  --jira-bg: #f1f2f4;
+  --jira-card: #ffffff;
+}
+
+body.login-pf {
+  font-family: 'Manrope', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: radial-gradient(circle at 20% 15%, #d3e1ff 0%, transparent 45%),
+    radial-gradient(circle at 85% 10%, #e3eeff 0%, transparent 45%),
+    linear-gradient(180deg, #e5eaf3 0%, #f1f3f8 100%);
+  color: var(--jira-text);
+  min-height: 100vh;
+}
+
+body.login-pf::before,
+body.login-pf::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+body.login-pf::before {
+  background-image: linear-gradient(
+      120deg,
+      rgba(23, 43, 77, 0.05) 0%,
+      rgba(23, 43, 77, 0.02) 35%,
+      transparent 60%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(9, 30, 66, 0.06) 0%,
+      rgba(9, 30, 66, 0.02) 40%,
+      transparent 70%
+    );
+  mix-blend-mode: multiply;
+}
+
+body.login-pf::after {
+  background-image: linear-gradient(
+      90deg,
+      rgba(9, 30, 66, 0.06) 0%,
+      rgba(9, 30, 66, 0.04) 12%,
+      transparent 12%,
+      transparent 20%,
+      rgba(9, 30, 66, 0.04) 20%,
+      rgba(9, 30, 66, 0.03) 30%,
+      transparent 30%,
+      transparent 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(9, 30, 66, 0.06) 0%,
+      rgba(9, 30, 66, 0.02) 10%,
+      transparent 10%,
+      transparent 25%,
+      rgba(9, 30, 66, 0.03) 25%,
+      rgba(9, 30, 66, 0.02) 40%,
+      transparent 40%,
+      transparent 100%
+    );
+  opacity: 0.25;
+}
+
+.login-pf-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 16px;
+}
+
+#kc-header {
+  display: none;
+}
+
+#kc-header-wrapper {
+  display: none;
+}
+
+.jira-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.jira-logo img {
+  width: 40px;
+  height: 40px;
+}
+
+.jira-title {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--jira-text);
+}
+
+.jira-subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: var(--jira-muted);
+}
+
+#kc-content-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.jira-card {
+  width: min(420px, 100%);
+  background: var(--jira-card);
+  border-radius: 12px;
+  border: 1px solid #e4e7ee;
+  box-shadow: 0 18px 40px rgba(9, 30, 66, 0.18);
+  padding: 26px 28px 24px;
+  position: relative;
+}
+
+.jira-card-header {
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.jira-alert {
+  background: #fff3f2;
+  color: #ae2e24;
+  border: 1px solid #ffd5d2;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.jira-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.jira-field label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--jira-text);
+}
+
+.jira-field input[type='text'],
+.jira-field input[type='password'] {
+  width: 100%;
+  border: 1px solid var(--jira-border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+  background: #ffffff;
+}
+
+.jira-field input[type='text']:focus,
+.jira-field input[type='password']:focus {
+  outline: none;
+  border-color: var(--jira-blue);
+  box-shadow: 0 0 0 3px rgba(12, 102, 228, 0.15);
+}
+
+.jira-required {
+  color: #e53935;
+}
+
+.jira-remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--jira-muted);
+}
+
+.jira-remember input {
+  width: 16px;
+  height: 16px;
+}
+
+.jira-submit {
+  margin-top: 4px;
+  background: var(--jira-blue);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.jira-submit:hover {
+  background: var(--jira-blue-dark);
+}
+
+.jira-submit:active {
+  transform: translateY(1px);
+}
+
+.jira-links {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.jira-links a {
+  color: var(--jira-blue);
+  text-decoration: none;
+}
+
+.jira-links a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .jira-card {
+    padding: 24px 20px;
+  }
+
+  .jira-links {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+}
