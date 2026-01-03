@@ -10,7 +10,7 @@ import {
   TextField,
   Typography,
 } from '@/components/ui';
-import { getStoredAuth } from '@/features/auth/api';
+import { getValidAccessToken } from '@/features/auth/api';
 
 type UserForm = {
   username: string;
@@ -55,17 +55,17 @@ export default function UsersManagementPage() {
     [],
   );
 
-  const getToken = () => {
-    const auth = getStoredAuth();
-    if (!auth || auth.expiresAt <= Date.now()) {
+  const getToken = async () => {
+    const token = await getValidAccessToken();
+    if (!token) {
       router.replace('/login');
       return null;
     }
-    return auth.accessToken;
+    return token;
   };
 
   const loadUsers = async () => {
-    const token = getToken();
+    const token = await getToken();
     if (!token) {
       return;
     }
@@ -94,7 +94,7 @@ export default function UsersManagementPage() {
   }, []);
 
   const handleCreate = async () => {
-    const token = getToken();
+    const token = await getToken();
     if (!token) {
       return;
     }
@@ -119,7 +119,7 @@ export default function UsersManagementPage() {
   };
 
   const handleDelete = async (id: string) => {
-    const token = getToken();
+    const token = await getToken();
     if (!token) {
       return;
     }
@@ -157,7 +157,7 @@ export default function UsersManagementPage() {
     if (!editingId) {
       return;
     }
-    const token = getToken();
+    const token = await getToken();
     if (!token) {
       return;
     }
