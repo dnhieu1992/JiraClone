@@ -11,6 +11,12 @@ const PKCE_VERIFIER_KEY = 'kc_pkce_verifier';
 const PKCE_STATE_KEY = 'kc_pkce_state';
 const PKCE_REMEMBER_KEY = 'kc_pkce_remember';
 const AUTH_STORAGE_KEY = 'kc_auth';
+const REFRESH_THRESHOLD_MS = 30_000;
+
+type StoredAuth = {
+  auth: AuthStorage;
+  storage: Storage;
+};
 
 function base64UrlEncode(buffer: ArrayBuffer): string {
   const bytes = new Uint8Array(buffer);
@@ -137,15 +143,110 @@ export async function handleKeycloakCallback(): Promise<AuthStorage> {
 }
 
 export function getStoredAuth(): AuthStorage | null {
+  const stored = getStoredAuthWithStorage();
+  return stored?.auth ?? null;
+}
+
+function getStoredAuthWithStorage(): StoredAuth | null {
   const fromSession = sessionStorage.getItem(AUTH_STORAGE_KEY);
+  if (fromSession) {
+    try {
+      return {
+        auth: JSON.parse(fromSession) as AuthStorage,
+        storage: sessionStorage,
+      };
+    } catch {
+      return null;
+    }
+  }
+
   const fromLocal = localStorage.getItem(AUTH_STORAGE_KEY);
-  const raw = fromSession || fromLocal;
-  if (!raw) {
+  if (!fromLocal) {
     return null;
   }
   try {
-    return JSON.parse(raw) as AuthStorage;
+    return {
+      auth: JSON.parse(fromLocal) as AuthStorage,
+      storage: localStorage,
+    };
   } catch {
     return null;
   }
+}
+
+export function clearStoredAuth(): void {
+  sessionStorage.removeItem(AUTH_STORAGE_KEY);
+  localStorage.removeItem(AUTH_STORAGE_KEY);
+}
+
+export function startKeycloakLogout(): void {
+  const { issuer, clientId, redirectUri } = getAuthConfig();
+  const postLogoutRedirectUri = redirectUri.replace('/keycloak/callback', '/login');
+  const auth = getStoredAuth();
+  clearStoredAuth();
+
+  const url = new URL(`${issuer}/protocol/openid-connect/logout`);
+  url.searchParams.set('client_id', clientId);
+  url.searchParams.set('post_logout_redirect_uri', postLogoutRedirectUri);
+  if (auth?.idToken) {
+    url.searchParams.set('id_token_hint', auth.idToken);
+  }
+
+  window.location.assign(url.toString());
+}
+
+async function refreshStoredAuth(): Promise<AuthStorage | null> {
+  const stored = getStoredAuthWithStorage();
+  if (!stored?.auth.refreshToken) {
+    return null;
+  }
+
+  const { issuer, clientId } = getAuthConfig();
+  const tokenResponse = await fetch(
+    `${issuer}/protocol/openid-connect/token`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        grant_type: 'refresh_token',
+        client_id: clientId,
+        refresh_token: stored.auth.refreshToken,
+      }),
+    },
+  );
+
+  if (!tokenResponse.ok) {
+    clearStoredAuth();
+    return null;
+  }
+
+  const tokenData: {
+    access_token: string;
+    refresh_token?: string;
+    id_token?: string;
+    expires_in: number;
+  } = await tokenResponse.json();
+
+  const refreshed: AuthStorage = {
+    accessToken: tokenData.access_token,
+    refreshToken: tokenData.refresh_token ?? stored.auth.refreshToken,
+    idToken: tokenData.id_token ?? stored.auth.idToken,
+    expiresAt: Date.now() + tokenData.expires_in * 1000,
+  };
+
+  stored.storage.setItem(AUTH_STORAGE_KEY, JSON.stringify(refreshed));
+  return refreshed;
+}
+
+export async function getValidAccessToken(): Promise<string | null> {
+  const auth = getStoredAuth();
+  if (!auth) {
+    return null;
+  }
+  if (auth.expiresAt - Date.now() > REFRESH_THRESHOLD_MS) {
+    return auth.accessToken;
+  }
+
+  const refreshed = await refreshStoredAuth();
+  return refreshed?.accessToken ?? null;
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { KeycloakAdminService } from '../auth/keycloak-admin.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -31,5 +32,36 @@ export class UsersService {
     }
 
     return { id: created.id };
+  }
+
+  async getUser(id: string) {
+    const client = await this.keycloakAdmin.getClient();
+    return client.users.findOne({ id });
+  }
+
+  async updateUser(id: string, dto: UpdateUserDto) {
+    const client = await this.keycloakAdmin.getClient();
+    const { password, temporary, ...user } = dto;
+
+    await client.users.update({ id }, user);
+
+    if (password) {
+      await client.users.resetPassword({
+        id,
+        credential: {
+          type: 'password',
+          value: password,
+          temporary: temporary ?? false,
+        },
+      });
+    }
+
+    return { id };
+  }
+
+  async deleteUser(id: string) {
+    const client = await this.keycloakAdmin.getClient();
+    await client.users.del({ id });
+    return { id };
   }
 }

@@ -1,11 +1,15 @@
 'use client';
 
+import { useState } from 'react';
+import type { MouseEvent } from 'react';
 import {
   Avatar,
   Box,
   Button,
   IconButton,
   InputAdornment,
+  Menu,
+  MenuItem,
   TextField,
   Typography,
 } from '@/components/ui';
@@ -18,8 +22,25 @@ import {
   SearchIcon,
   SettingsOutlinedIcon,
 } from '@/components/ui/icons';
+import { startKeycloakLogout } from '@/features/auth/api';
 
 export default function Topbar() {
+  const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
+  const menuOpen = Boolean(menuAnchor);
+
+  const handleMenuOpen = (event: MouseEvent<HTMLElement>) => {
+    setMenuAnchor(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setMenuAnchor(null);
+  };
+
+  const handleLogout = () => {
+    handleMenuClose();
+    startKeycloakLogout();
+  };
+
   return (
     <Box
       component="header"
@@ -141,17 +162,48 @@ export default function Topbar() {
         <SettingsOutlinedIcon fontSize="small" />
       </IconButton>
 
-      <Avatar
-        sx={{
-          width: 32,
-          height: 32,
-          bgcolor: '#0B875B',
-          fontSize: 14,
-          fontWeight: 600,
+      <IconButton
+        size="small"
+        onClick={handleMenuOpen}
+        sx={{ p: 0 }}
+        aria-label="User menu"
+        aria-controls={menuOpen ? 'topbar-user-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={menuOpen ? 'true' : undefined}
+      >
+        <Avatar
+          sx={{
+            width: 32,
+            height: 32,
+            bgcolor: '#0B875B',
+            fontSize: 14,
+            fontWeight: 600,
+          }}
+        >
+          H
+        </Avatar>
+      </IconButton>
+
+      <Menu
+        id="topbar-user-menu"
+        anchorEl={menuAnchor}
+        open={menuOpen}
+        onClose={handleMenuClose}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        PaperProps={{
+          sx: {
+            mt: 1,
+            minWidth: 180,
+            borderRadius: 2,
+            boxShadow: '0 12px 24px rgba(9, 30, 66, 0.18)',
+          },
         }}
       >
-        H
-      </Avatar>
+        <MenuItem onClick={handleLogout} sx={{ color: '#AE2E24' }}>
+          Log out
+        </MenuItem>
+      </Menu>
     </Box>
   );
 }

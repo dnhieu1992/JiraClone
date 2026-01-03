@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Box, Button, Typography } from '@/components/ui';
-import { getStoredAuth } from '@/features/auth/api';
+import { getValidAccessToken } from '@/features/auth/api';
 import AppShell from '@/components/layout/AppShell';
 
 export default function HomePage() {
@@ -12,14 +12,23 @@ export default function HomePage() {
   const [accessToken, setAccessToken] = useState<string | null>(null);
 
   useEffect(() => {
-    const auth = getStoredAuth();
-    if (!auth || auth.expiresAt <= Date.now()) {
-      router.replace('/login');
-      return;
-    }
+    let active = true;
+    void (async () => {
+      const token = await getValidAccessToken();
+      if (!active) {
+        return;
+      }
+      if (!token) {
+        router.replace('/login');
+        return;
+      }
+      setAccessToken(token);
+      setLoading(false);
+    })();
 
-    setAccessToken(auth.accessToken);
-    setLoading(false);
+    return () => {
+      active = false;
+    };
   }, [router]);
 
   if (loading) {
