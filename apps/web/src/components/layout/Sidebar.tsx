@@ -14,12 +14,15 @@ import {
   OpenInNewIcon,
   PersonOutlineIcon,
   PublicIcon,
+  SettingsOutlinedIcon,
   StarBorderIcon,
   TrackChangesIcon,
   TuneIcon,
   ViewAgendaIcon,
   AddIcon,
 } from '@/components/ui/icons';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 type NavItem = {
   label: string;
@@ -51,14 +54,16 @@ function SidebarRow({
   rightAdornment,
   active,
   muted,
+  href,
 }: {
   icon: React.ReactNode;
   label: string;
   rightAdornment?: React.ReactNode;
   active?: boolean;
   muted?: boolean;
+  href?: string;
 }) {
-  return (
+  const content = (
     <ButtonBase
       sx={{
         width: '100%',
@@ -104,9 +109,18 @@ function SidebarRow({
       ) : null}
     </ButtonBase>
   );
+  if (href) {
+    return (
+      <Box component={Link} href={href} sx={{ textDecoration: 'none' }}>
+        {content}
+      </Box>
+    );
+  }
+  return content;
 }
 
 export default function Sidebar() {
+  const pathname = usePathname();
   return (
     <Box
       sx={{
@@ -231,6 +245,18 @@ export default function Sidebar() {
             rightAdornment={<OpenInNewIcon fontSize="small" />}
           />
         ))}
+      </Box>
+
+      <Box sx={{ px: 2, pb: 1 }}>
+        <Typography variant="body2" sx={{ color: '#6B778C', fontWeight: 600, mb: 1 }}>
+          Admin
+        </Typography>
+        <SidebarRow
+          icon={<SettingsOutlinedIcon fontSize="small" />}
+          label="User management"
+          href="/admin/users"
+          active={pathname === '/admin/users'}
+        />
       </Box>
 
       <Box sx={{ px: 2, mt: 'auto', pb: 2 }}>
