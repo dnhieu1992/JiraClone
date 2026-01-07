@@ -1,0 +1,42 @@
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: jiraclone
+      MYSQL_USER: jira
+      MYSQL_PASSWORD: jira_password
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: unless-stopped
+
+  api:
+    build:
+      context: ../../
+      dockerfile: apps/api/Dockerfile
+    environment:
+      PORT: "3001"
+      NODE_ENV: production
+      DB_HOST: mysql
+      DB_PORT: "3306"
+      DB_USER: jira
+      DB_PASS: jira_password
+      DB_NAME: jiraclone
+      DB_ENABLED: "true"
+      DB_SYNC: "true"
+      DB_LOGGING: "false"
+      KEYCLOAK_AUTH_URL: "http://localhost:8080"
+      KEYCLOAK_REALM: "jira"
+      KEYCLOAK_API_CLIENT_ID: "jira-api"
+      KEYCLOAK_ADMIN_CLIENT_ID: "jira-admin"
+      KEYCLOAK_ADMIN_CLIENT_SECRET: "CHANGE_ME"
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mysql
+    restart: unless-stopped
+
+volumes:
+  mysql_data:

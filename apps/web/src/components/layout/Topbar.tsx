@@ -6,6 +6,7 @@ import {
   Avatar,
   Box,
   Button,
+  Divider,
   IconButton,
   InputAdornment,
   Menu,
@@ -17,8 +18,13 @@ import {
   AddIcon,
   AppsIcon,
   ArrowBackIosNewIcon,
+  Brightness4OutlinedIcon,
+  GroupAddOutlinedIcon,
   HelpOutlineIcon,
+  LogoutOutlinedIcon,
+  ManageAccountsOutlinedIcon,
   NotificationsNoneIcon,
+  PersonOutlineOutlinedIcon,
   SearchIcon,
   SettingsOutlinedIcon,
 } from '@/components/ui/icons';
@@ -194,13 +200,66 @@ export default function Topbar() {
         PaperProps={{
           sx: {
             mt: 1,
-            minWidth: 180,
+            minWidth: 260,
             borderRadius: 2,
             boxShadow: '0 12px 24px rgba(9, 30, 66, 0.18)',
+            p: 1,
           },
         }}
       >
-        <MenuItem onClick={handleLogout} sx={{ color: '#AE2E24' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 2,
+            bgcolor: '#F7F8F9',
+            borderRadius: 2,
+            px: 2,
+            py: 1.5,
+            mb: 1,
+          }}
+        >
+          <Avatar
+            sx={{
+              width: 56,
+              height: 56,
+              bgcolor: '#0B875B',
+              fontSize: 24,
+              fontWeight: 700,
+            }}
+          >
+            H
+          </Avatar>
+          <Box>
+            <Typography fontWeight={700} color="#172B4D">
+              Hiếu Đào
+            </Typography>
+            <Typography variant="body2" color="#6B778C">
+              dnhieu92@gmail.com
+            </Typography>
+          </Box>
+        </Box>
+
+        <MenuItem sx={{ gap: 1.5 }}>
+          <PersonOutlineOutlinedIcon fontSize="small" />
+          Profile
+        </MenuItem>
+        <MenuItem sx={{ gap: 1.5 }}>
+          <ManageAccountsOutlinedIcon fontSize="small" />
+          Account settings
+        </MenuItem>
+        <MenuItem sx={{ gap: 1.5 }}>
+          <Brightness4OutlinedIcon fontSize="small" />
+          Theme
+          <Box sx={{ marginLeft: 'auto', color: '#6B778C' }}>›</Box>
+        </MenuItem>
+        <Divider sx={{ my: 1 }} />
+        <MenuItem sx={{ gap: 1.5 }}>
+          <GroupAddOutlinedIcon fontSize="small" />
+          Switch account
+        </MenuItem>
+        <MenuItem onClick={handleLogout} sx={{ gap: 1.5, color: '#AE2E24' }}>
+          <LogoutOutlinedIcon fontSize="small" />
           Log out
         </MenuItem>
       </Menu>

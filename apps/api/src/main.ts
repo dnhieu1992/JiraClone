@@ -7,6 +7,7 @@ if (typeof globalThis.crypto === 'undefined') {
 
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -29,9 +30,21 @@ async function bootstrap() {
       }),
     );
 
+    const config = new DocumentBuilder()
+      .setTitle('Jira Clone API')
+      .setDescription('API documentation')
+      .setVersion('1.0')
+      .addBearerAuth()
+      .build();
+    const document = SwaggerModule.createDocument(app, config);
+    SwaggerModule.setup('docs', app, document);
+
     await app.listen(process.env.PORT || 3001, '0.0.0.0');
     console.log(
       `✅ Application is running on: http://localhost:${process.env.PORT || 3001}`,
+    );
+    console.log(
+      `📚 Swagger docs: http://localhost:${process.env.PORT || 3001}/docs`,
     );
     console.log(
       `⚠️  Note: Database connection may fail, but app will still run`,

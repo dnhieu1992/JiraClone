@@ -20,3 +20,8 @@ export { default as SearchIcon } from '@mui/icons-material/Search';
 export { default as NotificationsNoneIcon } from '@mui/icons-material/NotificationsNone';
 export { default as HelpOutlineIcon } from '@mui/icons-material/HelpOutline';
 export { default as SettingsOutlinedIcon } from '@mui/icons-material/SettingsOutlined';
+export { default as PersonOutlineOutlinedIcon } from '@mui/icons-material/PersonOutlineOutlined';
+export { default as ManageAccountsOutlinedIcon } from '@mui/icons-material/ManageAccountsOutlined';
+export { default as Brightness4OutlinedIcon } from '@mui/icons-material/Brightness4Outlined';
+export { default as GroupAddOutlinedIcon } from '@mui/icons-material/GroupAddOutlined';
+export { default as LogoutOutlinedIcon } from '@mui/icons-material/LogoutOutlined';
