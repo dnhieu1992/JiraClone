@@ -1,7 +1,43 @@
 @import 'tailwindcss';
 
-:root {
-  --app-bg: #f6f7fb;
+/* Tailwind v4: Configure theme colors using MUI CSS variables */
+@theme {
+  /* Color palette mapped from MUI CSS variables */
+  --color-bg: var(--ds-palette-background-default);
+  --color-surface: var(--ds-palette-background-paper);
+  --color-surface2: var(--ds-palette-background-default);
+  --color-border: var(--ds-palette-divider);
+  --color-text: var(--ds-palette-text-primary);
+  --color-text-muted: var(--ds-palette-text-secondary);
+  --color-primary: var(--ds-palette-primary-main);
+  --color-primary-hover: var(--ds-palette-primary-dark);
+  --color-danger: var(--ds-palette-error-main);
+  --color-warning: var(--ds-palette-warning-main);
+  --color-success: var(--ds-palette-success-main);
+  
+  /* Dark mode configuration - Tailwind will use class strategy */
+  --default-transition-duration: 150ms;
+  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Tailwind utilities layer - MUI variables available here */
+@layer utilities {
+  /* Custom utility classes using MUI variables */
+  .bg-ds-default {
+    background-color: var(--ds-palette-background-default);
+  }
+  .bg-ds-paper {
+    background-color: var(--ds-palette-background-paper);
+  }
+  .text-ds-primary {
+    color: var(--ds-palette-text-primary);
+  }
+  .text-ds-secondary {
+    color: var(--ds-palette-text-secondary);
+  }
+  .border-ds {
+    border-color: var(--ds-palette-divider);
+  }
 }
 
 *,
@@ -20,7 +56,8 @@ body {
 }
 
 body {
-  background: var(--app-bg);
+  background: var(--ds-palette-background-default);
+  color: var(--ds-palette-text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
