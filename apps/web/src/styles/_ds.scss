@@ -1,0 +1,174 @@
+/**
+ * Design System SCSS Helpers
+ * Use MUI CSS variables (--ds-*) as single source of truth
+ * Never hardcode colors - always use CSS variables
+ */
+
+// MUI CSS Variable References
+// All colors should use these variables:
+// - var(--ds-palette-background-default) - Main background
+// - var(--ds-palette-background-paper) - Card/paper background
+// - var(--ds-palette-text-primary) - Primary text
+// - var(--ds-palette-text-secondary) - Muted text
+// - var(--ds-palette-divider) - Borders
+// - var(--ds-palette-primary-main) - Primary color
+// - var(--ds-palette-error-main) - Error/danger
+// - var(--ds-palette-warning-main) - Warning
+// - var(--ds-palette-success-main) - Success
+
+// Focus Ring Mixin (Jira-like focus style)
+@mixin focus-ring($color: var(--ds-palette-primary-main)) {
+  outline: none;
+  box-shadow: 0 0 0 2px $color;
+  border-color: $color;
+}
+
+// Elevation/Shadow Mixins
+@mixin elevation-sm {
+  box-shadow: 0 1px 2px rgba(9, 30, 66, 0.08);
+}
+
+@mixin elevation-md {
+  box-shadow: 0 2px 4px rgba(9, 30, 66, 0.08);
+}
+
+@mixin elevation-lg {
+  box-shadow: 0 4px 8px rgba(9, 30, 66, 0.12);
+}
+
+// Text Style Mixins
+@mixin text-xs {
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+@mixin text-sm {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+@mixin text-base {
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+@mixin text-semibold {
+  font-weight: 600;
+}
+
+@mixin text-medium {
+  font-weight: 500;
+}
+
+// Border Radius Mixins
+@mixin radius-sm {
+  border-radius: 4px;
+}
+
+@mixin radius-md {
+  border-radius: 6px;
+}
+
+@mixin radius-lg {
+  border-radius: 8px;
+}
+
+@mixin radius-xl {
+  border-radius: 10px;
+}
+
+// Spacing Helpers (using CSS variables if available, or fallback)
+@mixin spacing-xs {
+  padding: 4px;
+}
+
+@mixin spacing-sm {
+  padding: 8px;
+}
+
+@mixin spacing-md {
+  padding: 12px;
+}
+
+@mixin spacing-lg {
+  padding: 16px;
+}
+
+@mixin spacing-xl {
+  padding: 24px;
+}
+
+// Card/Paper Style (Jira-like)
+@mixin jira-card {
+  background-color: var(--ds-palette-background-paper);
+  border: 1px solid var(--ds-palette-divider);
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(9, 30, 66, 0.08);
+  
+  &:hover {
+    box-shadow: 0 2px 4px rgba(9, 30, 66, 0.08);
+  }
+}
+
+// Button Style (Jira-like)
+@mixin jira-button {
+  background-color: var(--ds-palette-primary-main);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &:hover {
+    background-color: var(--ds-palette-primary-dark);
+    box-shadow: 0 1px 2px rgba(9, 30, 66, 0.08);
+  }
+  
+  &:focus {
+    @include focus-ring;
+  }
+}
+
+// Input Style (Jira-like)
+@mixin jira-input {
+  background-color: var(--ds-palette-background-paper);
+  border: 1px solid var(--ds-palette-divider);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: var(--ds-palette-text-primary);
+  
+  &:hover {
+    border-color: var(--ds-palette-text-secondary);
+  }
+  
+  &:focus {
+    @include focus-ring;
+    border-color: var(--ds-palette-primary-main);
+  }
+}
+
+// Example: Component using SCSS with MUI variables
+// .my-component {
+//   @include jira-card;
+//   padding: var(--ds-spacing-lg, 16px);
+//   color: var(--ds-palette-text-primary);
+//   
+//   &__title {
+//     @include text-base;
+//     @include text-semibold;
+//     margin-bottom: 8px;
+//   }
+//   
+//   &__content {
+//     @include text-sm;
+//     color: var(--ds-palette-text-secondary);
+//   }
+// }
+
