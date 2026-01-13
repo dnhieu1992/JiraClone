@@ -53,7 +53,6 @@ export default function HomePage() {
           display: 'flex',
           flexDirection: 'column',
           gap: 2,
-          color: '#172B4D',
         }}
       >
         <Typography variant="h4" fontWeight={600}>

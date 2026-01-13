@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import { Box } from '@/components/ui';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
@@ -8,11 +10,17 @@ export default function AppShell({
 }: {
   children: React.ReactNode;
 }) {
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+
+  const toggleSidebar = () => {
+    setSidebarOpen((prev) => !prev);
+  };
+
   return (
     <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <Topbar />
+      <Topbar onToggleSidebar={toggleSidebar} sidebarOpen={sidebarOpen} />
       <Box sx={{ flex: 1, display: 'flex', bgcolor: '#F4F5F7' }}>
-        <Sidebar />
+        {sidebarOpen && <Sidebar />}
         <Box
           component="main"
           sx={{

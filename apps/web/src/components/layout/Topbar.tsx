@@ -16,8 +16,6 @@ import {
 } from '@/components/ui';
 import {
   AddIcon,
-  AppsIcon,
-  ArrowBackIosNewIcon,
   Brightness4OutlinedIcon,
   GroupAddOutlinedIcon,
   HelpOutlineIcon,
@@ -29,8 +27,19 @@ import {
   SettingsOutlinedIcon,
 } from '@/components/ui/icons';
 import { startKeycloakLogout } from '@/features/auth/api';
+import SidebarToggleIcon from './SidebarToggleIcon';
+import AppsIconButton from './AppsIconButton';
+import JiraLogo from './JiraLogo';
 
-export default function Topbar() {
+interface TopbarProps {
+  onToggleSidebar?: () => void;
+  sidebarOpen?: boolean;
+}
+
+export default function Topbar({
+  onToggleSidebar,
+  sidebarOpen = true,
+}: TopbarProps) {
   const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
   const menuOpen = Boolean(menuAnchor);
 
@@ -60,37 +69,14 @@ export default function Topbar() {
         bgcolor: '#FFFFFF',
       }}
     >
-      <IconButton
-        size="small"
-        sx={{
-          border: '1px solid #DFE1E6',
-          borderRadius: 1,
-          width: 32,
-          height: 32,
-        }}
-      >
-        <ArrowBackIosNewIcon sx={{ fontSize: 16 }} />
-      </IconButton>
+      {onToggleSidebar && (
+        <SidebarToggleIcon onClick={onToggleSidebar} isOpen={sidebarOpen} />
+      )}
 
-      <IconButton size="small" sx={{ color: '#42526E' }}>
-        <AppsIcon fontSize="small" />
-      </IconButton>
+      <AppsIconButton />
 
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-        <Box
-          sx={{
-            width: 28,
-            height: 28,
-            bgcolor: '#0052CC',
-            borderRadius: 1,
-            display: 'grid',
-            placeItems: 'center',
-            color: '#FFFFFF',
-            fontWeight: 700,
-          }}
-        >
-          J
-        </Box>
+        <JiraLogo size={28} tileColor="#0052CC" iconColor="#FFFFFF" />
         <Typography fontWeight={600} color="#172B4D">
           Jira
         </Typography>
