@@ -62,15 +62,6 @@ function ColorSchemeManager({
  */
 export default function ThemeRegistry({ children }: { children: React.ReactNode }) {
   const [systemMode, setSystemMode] = useState<'light' | 'dark' | 'system'>('system');
-  const [initialMode, setInitialMode] = useState<'light' | 'dark'>('light');
-
-  // Detect initial system preference
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      setInitialMode(mediaQuery.matches ? 'dark' : 'light');
-    }
-  }, []);
 
   const handleSetMode = (newMode: 'light' | 'dark' | 'system') => {
     setSystemMode(newMode);
@@ -79,7 +70,7 @@ export default function ThemeRegistry({ children }: { children: React.ReactNode 
   return (
     <ColorSchemeContext.Provider value={{ mode: systemMode, setMode: handleSetMode }}>
       <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={theme} defaultMode={initialMode}>
+        <ThemeProvider theme={theme} defaultMode="system">
           <ColorSchemeManager systemMode={systemMode}>
             <CssBaseline />
             {children}
@@ -137,4 +128,3 @@ export function ModeSwitcher() {
     </Tooltip>
   );
 }
-

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@/components/ui';
-import Sidebar from './Sidebar';
-import Topbar from './Topbar';
+import Sidebar from './sidebar/Sidebar';
+import Topbar from './topbar';
 
 export default function AppShell({
   children,

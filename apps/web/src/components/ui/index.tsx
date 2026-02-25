@@ -16,3 +16,5 @@ export { default as Skeleton } from '@mui/material/Skeleton';
 export { default as TextField } from '@mui/material/TextField';
 export { default as Toolbar } from '@mui/material/Toolbar';
 export { default as Typography } from '@mui/material/Typography';
+export { default as Tabs } from '@mui/material/Tabs';
+export { default as Tab } from '@mui/material/Tab';

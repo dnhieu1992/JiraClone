@@ -17,7 +17,6 @@ import {
 import {
   AddIcon,
   AppsIcon,
-  ArrowBackIosNewIcon,
   Brightness4OutlinedIcon,
   GroupAddOutlinedIcon,
   HelpOutlineIcon,
@@ -28,6 +27,7 @@ import {
   SearchIcon,
   SettingsOutlinedIcon,
 } from '@/components/ui/icons';
+import { PanelRightClose } from 'lucide-react';
 import { startKeycloakLogout } from '@/features/auth/api';
 
 export default function Topbar() {
@@ -63,13 +63,17 @@ export default function Topbar() {
       <IconButton
         size="small"
         sx={{
-          border: '1px solid #DFE1E6',
           borderRadius: 1,
           width: 32,
           height: 32,
+          bgcolor: 'transparent',
+          color: '#42526E',
+          '&:hover': {
+            bgcolor: '#F0F1F2',
+          },
         }}
       >
-        <ArrowBackIosNewIcon sx={{ fontSize: 16 }} />
+        <PanelRightClose size={16} strokeWidth={2} />
       </IconButton>
 
       <IconButton size="small" sx={{ color: '#42526E' }}>
