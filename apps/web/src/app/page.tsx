@@ -46,31 +46,5 @@ export default function HomePage() {
     );
   }
 
-  return (
-    <AppShell>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 2,
-          color: '#172B4D',
-        }}
-      >
-        <Typography variant="h4" fontWeight={600}>
-          Welcome to Jira Clone
-        </Typography>
-        <Typography variant="body1">
-          You are logged in via Keycloak.
-        </Typography>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <Button
-            variant="outlined"
-            onClick={() => navigator.clipboard.writeText(accessToken ?? '')}
-          >
-            Copy access token
-          </Button>
-        </Box>
-      </Box>
-    </AppShell>
-  );
+  return <AppShell>home page</AppShell>;
 }

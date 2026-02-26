@@ -1,87 +1,89 @@
 :root {
   /* base */
-  --color-bg: 244 245 247;
+  --color-bg: 248 248 248;
   --color-surface: 255 255 255;
-  --color-surface-subtle: 250 251 252;
-  --color-surface-hover: 240 241 242;
-  --color-surface-raised: 247 248 249;
+  --color-surface-subtle: 240 241 242;
+  --color-surface-hover: 221 222 225;
+  --color-surface-raised: 255 255 255;
 
   /* text / icon */
-  --color-text: 23 43 77;
-  --color-text-muted: 107 119 140;
-  --color-text-subtle: 66 82 110;
+  --color-text: 41 42 46;
+  --color-text-muted: 107 110 118;
+  --color-text-subtle: 80 82 88;
   --color-text-inverse: 255 255 255;
-  --color-icon: 66 82 110;
-  --color-icon-muted: 107 119 140;
+  --color-icon: 41 42 46;
+  --color-icon-muted: 80 82 88;
+  --ds-text-subtle: rgb(var(--color-text-subtle));
 
   /* semantic */
-  --color-primary: 0 82 204;
-  --color-primary-hover: 0 101 255;
-  --color-primary-pressed: 0 85 204;
-  --color-focus-ring: 0 82 204;
-  --color-success: 0 135 90;
-  --color-warning: 255 171 0;
-  --color-danger: 222 53 11;
+  --color-primary: 24 104 219;
+  --color-primary-hover: 21 88 188;
+  --color-primary-pressed: 20 71 148;
+  --color-focus-ring: 70 136 236;
+  --color-success: 106 154 35;
+  --color-warning: 224 108 0;
+  --color-danger: 201 55 44;
 
   /* semantic backgrounds */
-  --color-success-bg: 227 252 239;
-  --color-warning-bg: 255 248 230;
-  --color-danger-bg: 255 244 244;
+  --color-success-bg: 239 255 214;
+  --color-warning-bg: 255 245 219;
+  --color-danger-bg: 255 236 235;
 
   /* borders / states */
-  --color-border: 223 225 230;
-  --color-border-strong: 193 199 208;
+  --color-border: 220 221 222;
+  --color-border-strong: 125 129 138;
 
   /* brand / accents */
-  --color-brand-jira: 0 82 204;
-  --color-accent-purple: 177 91 255;
-  --color-accent-purple-hover: 143 39 232;
-  --color-accent-purple-text: 107 47 191;
-  --color-accent-purple-bg: 247 240 255;
-  --color-avatar-green: 11 135 91;
+  --color-brand-jira: 24 104 219;
+  --color-accent-purple: 175 89 225;
+  --color-accent-purple-hover: 128 63 165;
+  --color-accent-purple-text: 128 63 165;
+  --color-accent-purple-bg: 248 238 254;
+  --color-avatar-green: 34 160 107;
   --color-danger-text-strong: 174 46 36;
 }
 
 html[data-theme='dark'] {
   /* base */
-  --color-bg: 29 33 37;
-  --color-surface: 34 39 43;
-  --color-surface-subtle: 40 46 51;
-  --color-surface-hover: 56 65 74;
-  --color-surface-raised: 40 46 51;
+  --color-bg: 24 25 26;
+  --color-surface: 31 31 33;
+  --color-surface-subtle: 36 37 40;
+  --color-surface-hover: 43 44 47;
+  --color-surface-raised: 36 37 40;
 
   /* text / icon */
-  --color-text: 179 186 197;
-  --color-text-muted: 140 156 184;
-  --color-text-subtle: 140 156 184;
-  --color-text-inverse: 23 43 77;
-  --color-icon: 179 186 197;
-  --color-icon-muted: 140 156 184;
+  --color-text: 206 207 210;
+  --color-text-muted: 150 153 158;
+  --color-text-subtle: 169 171 175;
+  --color-text-inverse: 31 31 33;
+  --color-icon: 206 207 210;
+  --color-icon-muted: 169 171 175;
+  --ds-text-subtle: rgb(var(--color-text-subtle));
 
   /* semantic */
-  --color-primary: 76 154 255;
-  --color-primary-hover: 38 132 255;
-  --color-primary-pressed: 38 132 255;
-  --color-focus-ring: 76 154 255;
-  --color-success: 54 179 126;
-  --color-warning: 255 171 0;
-  --color-danger: 255 86 48;
+  --color-primary: 102 157 241;
+  --color-primary-hover: 143 184 246;
+  --color-primary-pressed: 173 203 251;
+  --color-focus-ring: 143 184 246;
+  --color-success: 130 181 54;
+  --color-warning: 251 200 40;
+  --color-danger: 241 91 80;
 
   /* semantic backgrounds */
-  --color-success-bg: 20 55 45;
-  --color-warning-bg: 66 49 14;
-  --color-danger-bg: 66 25 20;
+  --color-success-bg: 40 49 27;
+  --color-warning-bg: 58 44 31;
+  --color-danger-bg: 66 34 31;
 
   /* borders / states */
-  --color-border: 56 65 74;
-  --color-border-strong: 111 122 133;
+  --color-border: 126 129 136;
+  --color-border-strong: 169 171 175;
 
   /* brand / accents */
-  --color-brand-jira: 76 154 255;
-  --color-accent-purple: 202 145 255;
-  --color-accent-purple-hover: 177 91 255;
-  --color-accent-purple-text: 228 194 255;
-  --color-accent-purple-bg: 51 30 77;
-  --color-avatar-green: 54 179 126;
-  --color-danger-text-strong: 255 134 124;
+  --color-brand-jira: 102 157 241;
+  --color-accent-purple: 191 99 243;
+  --color-accent-purple-hover: 216 160 247;
+  --color-accent-purple-text: 216 160 247;
+  --color-accent-purple-bg: 53 36 63;
+  --color-avatar-green: 42 187 127;
+  --color-danger-text-strong: 241 91 80;
 }

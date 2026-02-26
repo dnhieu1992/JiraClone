@@ -1,7 +1,7 @@
 import React from 'react';
-import { Box } from '@/components/ui';
 import Sidebar from './sidebar/Sidebar';
 import Topbar from './topbar';
+import { Box } from '@/components/ui';
 
 export default function AppShell({
   children,
@@ -9,18 +9,13 @@ export default function AppShell({
   children: React.ReactNode;
 }) {
   return (
-    <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <Box className="min-h-screen flex flex-col bg-bg text-text">
       <Topbar />
-      <Box sx={{ flex: 1, display: 'flex', bgcolor: '#F4F5F7' }}>
+      <Box className="flex flex-1 bg-bg">
         <Sidebar />
         <Box
           component="main"
-          sx={{
-            flex: 1,
-            p: 3,
-            bgcolor: '#F4F5F7',
-            overflow: 'auto',
-          }}
+          className="flex-1 p-6 bg-bg overflow-auto"
         >
           {children}
         </Box>
