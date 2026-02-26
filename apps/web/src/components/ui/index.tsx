@@ -12,6 +12,7 @@ export { default as InputAdornment } from '@mui/material/InputAdornment';
 export { default as Menu } from '@mui/material/Menu';
 export { default as MenuItem } from '@mui/material/MenuItem';
 export { default as Paper } from '@mui/material/Paper';
+export { default as Popover } from '@mui/material/Popover';
 export { default as Skeleton } from '@mui/material/Skeleton';
 export { default as TextField } from '@mui/material/TextField';
 export { default as Toolbar } from '@mui/material/Toolbar';

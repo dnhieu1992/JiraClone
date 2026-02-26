@@ -1,7 +1,7 @@
-import type { Metadata } from 'next';
-import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
-import ThemeRegistry from '../design-system/ThemeRegistry';
+import '../styles/colors.css';
 import './globals.css';
+import type { Metadata } from 'next';
+import MuiThemeProvider from '../theme/MuiThemeProvider';
 
 export const metadata: Metadata = {
   title: 'Jira Clone',
@@ -15,8 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <InitColorSchemeScript attribute="class" />
-        <ThemeRegistry>{children}</ThemeRegistry>
+        <MuiThemeProvider>{children}</MuiThemeProvider>
       </body>
     </html>
   );

@@ -11,6 +11,7 @@ import {
   InputAdornment,
   Menu,
   MenuItem,
+  Popover,
   TextField,
   Typography,
 } from '@/components/ui';
@@ -29,10 +30,21 @@ import {
 } from '@/components/ui/icons';
 import { PanelRightClose } from 'lucide-react';
 import { startKeycloakLogout } from '@/features/auth/api';
+import { useThemeMode } from '@/hooks/useThemeMode';
+import type { ThemePreference } from '@/theme/themeMode';
+
+const themeOptions: Array<{ value: ThemePreference; label: string }> = [
+  { value: 'light', label: 'Light' },
+  { value: 'dark', label: 'Dark' },
+  { value: 'system', label: 'Match browser' },
+];
 
 export default function Topbar() {
   const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
+  const [themeAnchor, setThemeAnchor] = useState<null | HTMLElement>(null);
   const menuOpen = Boolean(menuAnchor);
+  const themeMenuOpen = Boolean(themeAnchor);
+  const { mode, preference, setMode } = useThemeMode();
 
   const handleMenuOpen = (event: MouseEvent<HTMLElement>) => {
     setMenuAnchor(event.currentTarget);
@@ -40,11 +52,25 @@ export default function Topbar() {
 
   const handleMenuClose = () => {
     setMenuAnchor(null);
+    setThemeAnchor(null);
   };
 
   const handleLogout = () => {
     handleMenuClose();
     startKeycloakLogout();
+  };
+
+  const handleThemeOpen = (event: MouseEvent<HTMLElement>) => {
+    setThemeAnchor((prev) => (prev ? null : event.currentTarget));
+  };
+
+  const handleThemeClose = () => {
+    setThemeAnchor(null);
+  };
+
+  const handleThemeChange = (nextMode: ThemePreference) => {
+    setMode(nextMode);
+    handleThemeClose();
   };
 
   return (
@@ -252,11 +278,172 @@ export default function Topbar() {
           <ManageAccountsOutlinedIcon fontSize="small" />
           Account settings
         </MenuItem>
-        <MenuItem sx={{ gap: 1.5 }}>
+        <MenuItem
+          onClick={handleThemeOpen}
+          selected={themeMenuOpen}
+          aria-haspopup="true"
+          aria-controls={themeMenuOpen ? 'topbar-theme-menu' : undefined}
+          aria-expanded={themeMenuOpen ? 'true' : undefined}
+          sx={{
+            gap: 1.5,
+            '&.Mui-selected': {
+              bgcolor: 'rgb(var(--color-primary) / 0.14)',
+              color: 'rgb(var(--color-primary))',
+            },
+            '&.Mui-selected:hover': {
+              bgcolor: 'rgb(var(--color-primary) / 0.2)',
+            },
+          }}
+        >
           <Brightness4OutlinedIcon fontSize="small" />
           Theme
-          <Box sx={{ marginLeft: 'auto', color: '#6B778C' }}>›</Box>
+          <Box
+            sx={{
+              marginLeft: 'auto',
+              color: themeMenuOpen
+                ? 'rgb(var(--color-primary))'
+                : 'rgb(var(--color-text-muted))',
+            }}
+          >
+            ›
+          </Box>
         </MenuItem>
+        <Popover
+          id="topbar-theme-menu"
+          open={themeMenuOpen}
+          anchorEl={themeAnchor}
+          onClose={handleThemeClose}
+          anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+          transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+          disablePortal
+          disableAutoFocus
+          disableEnforceFocus
+          PaperProps={{
+            sx: {
+              mt: -0.5,
+              mr: 0.5,
+              minWidth: 300,
+              borderRadius: 2,
+              border: '1px solid rgb(var(--color-border))',
+              boxShadow: '0 12px 24px rgba(9, 30, 66, 0.18)',
+              p: 0.5,
+              bgcolor: 'rgb(var(--color-surface))',
+            },
+          }}
+        >
+          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+            {themeOptions.map((option) => {
+              const selected = preference === option.value;
+
+              return (
+                <MenuItem
+                  key={option.value}
+                  onClick={() => handleThemeChange(option.value)}
+                  selected={selected}
+                  sx={{
+                    display: 'grid',
+                    gridTemplateColumns: '24px 88px 1fr',
+                    alignItems: 'center',
+                    gap: 2,
+                    py: 1.25,
+                    px: 1.5,
+                    borderRadius: 1.5,
+                    '&.Mui-selected': {
+                      bgcolor: 'rgb(var(--color-primary) / 0.16)',
+                    },
+                    '&.Mui-selected:hover': {
+                      bgcolor: 'rgb(var(--color-primary) / 0.22)',
+                    },
+                  }}
+                >
+                  <Box
+                    sx={{
+                      width: 22,
+                      height: 22,
+                      borderRadius: '50%',
+                      border: selected
+                        ? '2px solid rgb(var(--color-primary))'
+                        : '2px solid rgb(var(--color-border-strong))',
+                      display: 'grid',
+                      placeItems: 'center',
+                    }}
+                  >
+                    {selected ? (
+                      <Box
+                        sx={{
+                          width: 10,
+                          height: 10,
+                          borderRadius: '50%',
+                          bgcolor: 'rgb(var(--color-primary))',
+                        }}
+                      />
+                    ) : null}
+                  </Box>
+                  <Box
+                    aria-hidden
+                    sx={{
+                      width: 88,
+                      height: 52,
+                      borderRadius: 1,
+                      border: '1px solid rgb(var(--color-border))',
+                      background:
+                        option.value === 'dark'
+                          ? 'rgb(29 33 37)'
+                          : option.value === 'light'
+                            ? 'rgb(255 255 255)'
+                            : 'linear-gradient(90deg, rgb(29 33 37) 0%, rgb(29 33 37) 50%, rgb(255 255 255) 50%, rgb(255 255 255) 100%)',
+                      position: 'relative',
+                      overflow: 'hidden',
+                      '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 4,
+                        left: 6,
+                        right: 6,
+                        height: 6,
+                        borderRadius: 99,
+                        bgcolor:
+                          option.value === 'dark'
+                            ? 'rgb(56 65 74)'
+                            : 'rgb(223 225 230)',
+                      },
+                      '&::after': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 14,
+                        left: 6,
+                        width: 18,
+                        bottom: 6,
+                        borderRadius: 0.5,
+                        bgcolor:
+                          option.value === 'dark'
+                            ? 'rgb(34 39 43)'
+                            : 'rgb(244 245 247)',
+                      },
+                    }}
+                  />
+                  <Box>
+                    <Typography
+                      sx={{
+                        fontWeight: 500,
+                        color: selected
+                          ? 'rgb(var(--color-primary))'
+                          : 'rgb(var(--color-text))',
+                      }}
+                    >
+                      {option.label}
+                    </Typography>
+                    {option.value === 'system' ? (
+                      <Typography variant="body2" sx={{ color: 'rgb(var(--color-text-muted))' }}>
+                        Current: {mode}
+                      </Typography>
+                    ) : null}
+                  </Box>
+                </MenuItem>
+              );
+            })}
+          </Box>
+        </Popover>
         <Divider sx={{ my: 1 }} />
         <MenuItem sx={{ gap: 1.5 }}>
           <GroupAddOutlinedIcon fontSize="small" />

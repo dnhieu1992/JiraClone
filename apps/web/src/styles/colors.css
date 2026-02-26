@@ -1,0 +1,87 @@
+:root {
+  /* base */
+  --color-bg: 244 245 247;
+  --color-surface: 255 255 255;
+  --color-surface-subtle: 250 251 252;
+  --color-surface-hover: 240 241 242;
+  --color-surface-raised: 247 248 249;
+
+  /* text / icon */
+  --color-text: 23 43 77;
+  --color-text-muted: 107 119 140;
+  --color-text-subtle: 66 82 110;
+  --color-text-inverse: 255 255 255;
+  --color-icon: 66 82 110;
+  --color-icon-muted: 107 119 140;
+
+  /* semantic */
+  --color-primary: 0 82 204;
+  --color-primary-hover: 0 101 255;
+  --color-primary-pressed: 0 85 204;
+  --color-focus-ring: 0 82 204;
+  --color-success: 0 135 90;
+  --color-warning: 255 171 0;
+  --color-danger: 222 53 11;
+
+  /* semantic backgrounds */
+  --color-success-bg: 227 252 239;
+  --color-warning-bg: 255 248 230;
+  --color-danger-bg: 255 244 244;
+
+  /* borders / states */
+  --color-border: 223 225 230;
+  --color-border-strong: 193 199 208;
+
+  /* brand / accents */
+  --color-brand-jira: 0 82 204;
+  --color-accent-purple: 177 91 255;
+  --color-accent-purple-hover: 143 39 232;
+  --color-accent-purple-text: 107 47 191;
+  --color-accent-purple-bg: 247 240 255;
+  --color-avatar-green: 11 135 91;
+  --color-danger-text-strong: 174 46 36;
+}
+
+html[data-theme='dark'] {
+  /* base */
+  --color-bg: 29 33 37;
+  --color-surface: 34 39 43;
+  --color-surface-subtle: 40 46 51;
+  --color-surface-hover: 56 65 74;
+  --color-surface-raised: 40 46 51;
+
+  /* text / icon */
+  --color-text: 179 186 197;
+  --color-text-muted: 140 156 184;
+  --color-text-subtle: 140 156 184;
+  --color-text-inverse: 23 43 77;
+  --color-icon: 179 186 197;
+  --color-icon-muted: 140 156 184;
+
+  /* semantic */
+  --color-primary: 76 154 255;
+  --color-primary-hover: 38 132 255;
+  --color-primary-pressed: 38 132 255;
+  --color-focus-ring: 76 154 255;
+  --color-success: 54 179 126;
+  --color-warning: 255 171 0;
+  --color-danger: 255 86 48;
+
+  /* semantic backgrounds */
+  --color-success-bg: 20 55 45;
+  --color-warning-bg: 66 49 14;
+  --color-danger-bg: 66 25 20;
+
+  /* borders / states */
+  --color-border: 56 65 74;
+  --color-border-strong: 111 122 133;
+
+  /* brand / accents */
+  --color-brand-jira: 76 154 255;
+  --color-accent-purple: 202 145 255;
+  --color-accent-purple-hover: 177 91 255;
+  --color-accent-purple-text: 228 194 255;
+  --color-accent-purple-bg: 51 30 77;
+  --color-avatar-green: 54 179 126;
+  --color-danger-text-strong: 255 134 124;
+}
