@@ -4,15 +4,20 @@
 - This file defines rules for adding and maintaining CSS variables in `colors.css`.
 
 ## Naming
-- Use kebab-case with semantic prefixes: `--color-*`.
-- Name by purpose, not by specific shade.
-- Good: `--color-text-muted`, `--color-border`.
-- Avoid: `--color-blue-500`, `--color-gray-light`.
+- Use kebab-case with semantic prefixes:
+  - `--color-*` for color tokens
+  - `--space-*` for spacing scale
+  - `--font-size-*` for typography scale
+  - `--z-index-*` for layer ordering
+- Name by purpose, not by specific shade/value.
+- Good: `--color-text-muted`, `--space-4`, `--font-size-sm`, `--z-index-modal`.
+- Avoid: `--color-blue-500`, `--space-13`, `--font-size-17`, `--z-index-9999`.
 
 ## Value Format
 - Store color values as raw RGB triplets (space-separated), not hex.
 - Example: `--color-primary: 59 130 246;`
 - Do not use commas in variable values.
+- Use `px` for spacing/font-size/z-index scales where applicable.
 
 ## Theme Parity
 - Every new variable in `:root` must also exist in `html[data-theme='dark']`.
@@ -27,6 +32,9 @@
   - `semantic backgrounds`
   - `borders / states`
   - `brand / accents`
+  - `spacing`
+  - `font size`
+  - `z-index`
 - Add new variables to the most relevant section.
 
 ## Usage
@@ -35,6 +43,10 @@
   - `background: rgb(var(--color-bg));`
   - `border-color: rgb(var(--color-border));`
   - `color: rgb(var(--color-text) / 0.8);`
+- For spacing/typography/layers:
+  - `padding: var(--space-4);`
+  - `font-size: var(--font-size-sm);`
+  - `z-index: var(--z-index-modal);`
 
 ## Change Management
 - Do not rename/remove a variable without updating all references in the same change.
@@ -43,4 +55,5 @@
 ## Validation Checklist
 - Verify both theme blocks contain the new variable.
 - Search for hardcoded colors in touched files and replace where appropriate.
+- Search for hardcoded spacing/font-size/z-index in touched files and replace where appropriate.
 - Run web lint/type-check after changes.

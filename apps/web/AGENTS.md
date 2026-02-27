@@ -23,6 +23,7 @@ Applies to all code under `apps/web`.
 
 ## Styling and UX
 - Use existing design tokens and Tailwind patterns in the codebase.
+- For SCSS code generation, use BEM naming convention (`block`, `block__element`, `block--modifier`).
 - Keep responsive behavior for desktop and mobile.
 - Ensure accessibility basics: semantic elements, labels, keyboard support for controls.
 

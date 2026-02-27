@@ -17,18 +17,21 @@
 
 .auth-login-brand__icon-text {
   color: #fff;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-md);
 }
 
 .auth-login-brand__name {
   color: #172b4d;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-md);
 }
 
 .auth-login-title {
   margin-bottom: 16px;
   color: #172b4d;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-heading);
 }
 
 .auth-login-subtitle {

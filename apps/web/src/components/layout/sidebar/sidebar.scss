@@ -74,7 +74,8 @@
 
 .jira-sidebar__brand-text {
   color: rgb(var(--color-text));
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-md);
 }
 
 .jira-sidebar-menu-item {
@@ -127,7 +128,8 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-md);
   color: rgb(159 163 172);
 }
 
