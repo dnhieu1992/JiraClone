@@ -26,6 +26,10 @@ Applies to all code under `apps/web`.
 - Keep responsive behavior for desktop and mobile.
 - Ensure accessibility basics: semantic elements, labels, keyboard support for controls.
 
+## Icons
+- Do not use barrel imports from `lucide-react` (e.g. `import { X } from 'lucide-react'`).
+- Use default deep imports per icon instead (e.g. `import X from 'lucide-react/dist/esm/icons/x'`).
+
 ## Validation Before Finish
 Run relevant checks for web scope:
 - `pnpm --filter @jira-clone/web lint`

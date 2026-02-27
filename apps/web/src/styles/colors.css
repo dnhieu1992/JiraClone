@@ -5,6 +5,7 @@
   --color-surface-subtle: 240 241 242;
   --color-surface-hover: 221 222 225;
   --color-surface-raised: 255 255 255;
+  --ds-surface-sunken: #F8F8F8;
 
   /* text / icon */
   --color-text: 41 42 46;
@@ -41,6 +42,51 @@
   --color-accent-purple-bg: 248 238 254;
   --color-avatar-green: 34 160 107;
   --color-danger-text-strong: 174 46 36;
+
+  /* sidebar layout */
+  --sidebar-width: 260px;
+  --sidebar-height: 100vh;
+  --sidebar-divider-width: 1px;
+  --sidebar-header-height: 56px;
+  --sidebar-header-padding-x: 16px;
+  --sidebar-header-gap: 12px;
+  --sidebar-header-icon-button: 32px;
+  --sidebar-product-icon-size: 36px;
+  --sidebar-nav-padding-top: 12px;
+  --sidebar-nav-padding-x: 16px;
+  --sidebar-item-height: 56px;
+  --sidebar-item-radius: 10px;
+  --sidebar-item-row-gap: 8px;
+  --sidebar-item-padding-left: 40px;
+  --sidebar-item-padding-right: 16px;
+  --sidebar-item-icon-size: 24px;
+  --sidebar-item-icon-label-gap: 24px;
+  --sidebar-item-right-icon-size: 18px;
+  --sidebar-section-gap-before-secondary: 24px;
+  --sidebar-section-gap-before-more: 24px;
+  --sidebar-active-indicator-width: 4px;
+  --sidebar-active-indicator-radius: 2px;
+  --sidebar-active-indicator-inset-left: 20px;
+  --sidebar-chip-size: 40px;
+  --sidebar-chip-radius: 10px;
+  --sidebar-header-icon-size-min: 20px;
+  --sidebar-header-icon-size-max: 24px;
+  --sidebar-item-label-start-x-min: 86px;
+  --sidebar-item-label-start-x-max: 90px;
+
+  /* sidebar colors (light) */
+  --sidebar-c-bg: 255 255 255;
+  --sidebar-c-divider: 221 221 221;
+  --sidebar-c-text: 80 81 88;
+  --sidebar-c-text-strong: 29 33 37;
+  --sidebar-c-hover-bg: 9 30 66;
+  --sidebar-c-hover-bg-alpha: 0.06;
+  --sidebar-c-active-bg: 234 242 253;
+  --sidebar-c-active-fg: 50 102 212;
+  --sidebar-c-active-indicator: 50 102 212;
+  --sidebar-c-chip-bg: 221 222 224;
+  --sidebar-c-header-hover-bg: 9 30 66;
+  --sidebar-c-header-hover-bg-alpha: 0.06;
 }
 
 html[data-theme='dark'] {
@@ -50,6 +96,7 @@ html[data-theme='dark'] {
   --color-surface-subtle: 36 37 40;
   --color-surface-hover: 43 44 47;
   --color-surface-raised: 36 37 40;
+  --ds-surface-sunken: #18191A;
 
   /* text / icon */
   --color-text: 206 207 210;
@@ -86,4 +133,49 @@ html[data-theme='dark'] {
   --color-accent-purple-bg: 53 36 63;
   --color-avatar-green: 42 187 127;
   --color-danger-text-strong: 241 91 80;
+
+  /* sidebar layout */
+  --sidebar-width: 260px;
+  --sidebar-height: 100vh;
+  --sidebar-divider-width: 1px;
+  --sidebar-header-height: 56px;
+  --sidebar-header-padding-x: 16px;
+  --sidebar-header-gap: 12px;
+  --sidebar-header-icon-button: 32px;
+  --sidebar-product-icon-size: 36px;
+  --sidebar-nav-padding-top: 12px;
+  --sidebar-nav-padding-x: 16px;
+  --sidebar-item-height: 56px;
+  --sidebar-item-radius: 10px;
+  --sidebar-item-row-gap: 8px;
+  --sidebar-item-padding-left: 40px;
+  --sidebar-item-padding-right: 16px;
+  --sidebar-item-icon-size: 24px;
+  --sidebar-item-icon-label-gap: 24px;
+  --sidebar-item-right-icon-size: 18px;
+  --sidebar-section-gap-before-secondary: 24px;
+  --sidebar-section-gap-before-more: 24px;
+  --sidebar-active-indicator-width: 4px;
+  --sidebar-active-indicator-radius: 2px;
+  --sidebar-active-indicator-inset-left: 20px;
+  --sidebar-chip-size: 40px;
+  --sidebar-chip-radius: 10px;
+  --sidebar-header-icon-size-min: 20px;
+  --sidebar-header-icon-size-max: 24px;
+  --sidebar-item-label-start-x-min: 86px;
+  --sidebar-item-label-start-x-max: 90px;
+
+  /* sidebar colors (dark) */
+  --sidebar-c-bg: 31 31 33;
+  --sidebar-c-divider: 55 55 58;
+  --sidebar-c-text: 169 170 174;
+  --sidebar-c-text-strong: 214 215 218;
+  --sidebar-c-hover-bg: 255 255 255;
+  --sidebar-c-hover-bg-alpha: 0.04;
+  --sidebar-c-active-bg: 31 43 64;
+  --sidebar-c-active-fg: 115 156 234;
+  --sidebar-c-active-indicator: 115 156 234;
+  --sidebar-c-chip-bg: 221 222 224;
+  --sidebar-c-header-hover-bg: 255 255 255;
+  --sidebar-c-header-hover-bg-alpha: 0.06;
 }

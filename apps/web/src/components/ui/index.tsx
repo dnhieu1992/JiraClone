@@ -1,4 +1,5 @@
 export { default as Avatar } from '@mui/material/Avatar';
+export { default as UserAvatar } from './UserAvatar';
 export { default as AppBar } from '@mui/material/AppBar';
 export { default as Box } from '@mui/material/Box';
 export { default as Button } from '@mui/material/Button';
@@ -19,3 +20,4 @@ export { default as Toolbar } from '@mui/material/Toolbar';
 export { default as Typography } from '@mui/material/Typography';
 export { default as Tabs } from '@mui/material/Tabs';
 export { default as Tab } from '@mui/material/Tab';
+export { default as Tooltip } from '@mui/material/Tooltip';

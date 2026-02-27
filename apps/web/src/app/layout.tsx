@@ -1,4 +1,5 @@
 import '../styles/colors.css';
+import '../components/layout/sidebar/sidebar.scss';
 import './globals.css';
 import type { Metadata } from 'next';
 import MuiThemeProvider from '../theme/MuiThemeProvider';

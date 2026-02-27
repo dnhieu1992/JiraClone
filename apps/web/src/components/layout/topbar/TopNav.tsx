@@ -3,25 +3,25 @@
 import { useState } from 'react';
 import type { MouseEvent } from 'react';
 import {
-  Avatar,
   Box,
   Divider,
   IconButton,
   Menu,
   MenuItem,
   Popover,
+  Tooltip,
   Typography,
+  UserAvatar,
 } from '@/components/ui';
 import {
-  Brightness4OutlinedIcon,
-  GroupAddOutlinedIcon,
-  HelpOutlineIcon,
-  LogoutOutlinedIcon,
-  ManageAccountsOutlinedIcon,
-  NotificationsNoneIcon,
-  PersonOutlineOutlinedIcon,
-  SettingsOutlinedIcon,
-} from '@/components/ui/icons';
+  Bell,
+  CircleHelp,
+  CircleUserRound,
+  LogOut,
+  MoonStar,
+  Settings,
+  Users,
+} from 'lucide-react';
 import { startKeycloakLogout } from '@/features/auth/api';
 import { useThemeMode } from '@/hooks/useThemeMode';
 import type { ThemePreference } from '@/theme/themeMode';
@@ -31,6 +31,24 @@ const themeOptions: Array<{ value: ThemePreference; label: string }> = [
   { value: 'dark', label: 'Dark' },
   { value: 'system', label: 'Match browser' },
 ];
+
+const topActions = [
+  { label: 'Notifications', icon: <Bell size={18} strokeWidth={2} /> },
+  { label: 'Help', icon: <CircleHelp size={18} strokeWidth={2} /> },
+  { label: 'Settings', icon: <Settings size={18} strokeWidth={2} /> },
+] as const;
+
+const topActionTooltipSx = {
+  bgcolor: '#F1F2F4',
+  color: '#1F2328',
+  borderRadius: '6px',
+  fontSize: '14px',
+  fontWeight: 500,
+  px: 1.25,
+  py: 0.5,
+};
+
+const currentUserName = 'Hiếu Đào';
 
 const themePreviewBaseClassName =
   'relative h-[52px] w-[88px] overflow-hidden rounded border border-border before:absolute before:left-1.5 before:right-1.5 before:top-1 before:h-1.5 before:rounded-full before:content-[""] after:absolute after:bottom-1.5 after:left-1.5 after:top-3.5 after:w-[18px] after:rounded-sm after:content-[""]';
@@ -82,16 +100,23 @@ export default function TopNav() {
   };
 
   return (
-    <Box className="flex items-center gap-1.5">
-      <IconButton size="small" className="!text-[var(--ds-text-subtle)]">
-        <NotificationsNoneIcon fontSize="small" />
-      </IconButton>
-      <IconButton size="small" className="!text-[var(--ds-text-subtle)]">
-        <HelpOutlineIcon fontSize="small" />
-      </IconButton>
-      <IconButton size="small" className="!text-[var(--ds-text-subtle)]">
-        <SettingsOutlinedIcon fontSize="small" />
-      </IconButton>
+    <Box className="flex items-center gap-1.5" paddingRight={2}>
+      {topActions.map((action) => (
+        <Tooltip
+          key={action.label}
+          title={action.label}
+          placement="bottom"
+          slotProps={{
+            tooltip: {
+              sx: topActionTooltipSx,
+            },
+          }}
+        >
+          <IconButton size="small">
+            {action.icon}
+          </IconButton>
+        </Tooltip>
+      ))}
 
       <IconButton
         size="small"
@@ -102,7 +127,11 @@ export default function TopNav() {
         aria-haspopup="true"
         aria-expanded={menuOpen ? 'true' : undefined}
       >
-        <Avatar className="h-8 w-8 bg-avatar-green text-[14px] font-semibold">H</Avatar>
+        <UserAvatar
+          name={currentUserName}
+          size="small"
+          className="font-semibold"
+        />
       </IconButton>
 
       <Menu
@@ -117,24 +146,42 @@ export default function TopNav() {
             'mt-1 min-w-[320px] rounded-xl border border-[#3b3e45] bg-[#2b2d33] p-1.5 text-[#c6c8ce] shadow-[0_18px_34px_rgba(0,0,0,0.45)]',
         }}
       >
-        <Box className="mb-1.5 flex items-center gap-4 rounded-lg bg-[#171a1f] px-4 py-3">
-          <Avatar className="h-[96px] w-[96px] bg-[#0b8f62] text-[56px] font-semibold">H</Avatar>
-          <Box>
-            <Typography fontWeight={700} className="!text-[20px] !leading-tight !text-[#f1f2f4]">
-              Hiếu Đào
+        <Box
+          sx={{
+            mt: 0,
+            mx: 1,
+            mb: 1,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 2,
+            px: 2,
+            py: 1.5,
+            borderRadius: '4px',
+            bgcolor: 'var(--ds-surface-sunken)',
+            border: '1px solid #2f3238',
+          }}
+        >
+          <UserAvatar
+            name={currentUserName}
+            size="large"
+            className="font-semibold"
+          />
+          <Box sx={{ minWidth: 0 }}>
+            <Typography fontWeight={700} sx={{ fontSize: 20, lineHeight: 1.15, color: '#f1f2f4' }}>
+              {currentUserName}
             </Typography>
-            <Typography className="mt-1 !text-[14px] !text-[#9ea2ab]">
+            <Typography sx={{ mt: 0.5, fontSize: 14, color: '#9ea2ab' }}>
               dnhieu92@gmail.com
             </Typography>
           </Box>
         </Box>
 
-        <MenuItem className="min-h-[64px] gap-3 rounded-md px-4 !text-[18px] !text-[#d0d2d8]">
-          <PersonOutlineOutlinedIcon className="!text-[24px] !text-[#d0d2d8]" />
+        <MenuItem className="min-h-[64px] gap-3 rounded-md px-4 text-[18px] text-[#d0d2d8]">
+          <CircleUserRound className="text-[#d0d2d8]" size={16} strokeWidth={2} />
           Profile
         </MenuItem>
-        <MenuItem className="min-h-[64px] gap-3 rounded-md px-4 !text-[18px] !text-[#d0d2d8]">
-          <ManageAccountsOutlinedIcon className="!text-[24px] !text-[#d0d2d8]" />
+        <MenuItem className="min-h-[64px] gap-3 rounded-md px-4 text-[18px] text-[#d0d2d8]">
+          <Settings className="text-[#d0d2d8]" size={16} strokeWidth={2} />
           Account settings
         </MenuItem>
         <MenuItem
@@ -143,11 +190,13 @@ export default function TopNav() {
           aria-haspopup="true"
           aria-controls={themeMenuOpen ? 'topbar-theme-menu' : undefined}
           aria-expanded={themeMenuOpen ? 'true' : undefined}
-          className="min-h-[64px] gap-3 rounded-md px-4 !text-[18px] !text-[#d0d2d8] [&.Mui-selected]:bg-[#123263] [&.Mui-selected]:!text-[#8fb8f6] [&.Mui-selected:hover]:bg-[#144794]"
+          className="min-h-[64px] gap-3 rounded-md px-4 text-[18px] text-[#d0d2d8] [&.Mui-selected]:bg-[#123263] [&.Mui-selected]:text-[#8fb8f6] [&.Mui-selected:hover]:bg-[#144794]"
         >
-          <Brightness4OutlinedIcon className="!text-[24px]" />
+          <MoonStar className="text-[#d0d2d8]" size={16} strokeWidth={2} />
           Theme
-          <Box className={`ml-auto text-[28px] leading-none ${themeMenuOpen ? 'text-[#8fb8f6]' : 'text-[#b8bbc3]'}`}>
+          <Box
+            className={`ml-auto text-[28px] leading-none ${themeMenuOpen ? 'text-[#8fb8f6]' : 'text-[#b8bbc3]'}`}
+          >
             ›
           </Box>
         </MenuItem>
@@ -186,7 +235,10 @@ export default function TopNav() {
                       <Box className="h-2.5 w-2.5 rounded-full bg-primary" />
                     ) : null}
                   </Box>
-                  <Box aria-hidden className={getThemePreviewClassName(option.value)} />
+                  <Box
+                    aria-hidden
+                    className={getThemePreviewClassName(option.value)}
+                  />
                   <Box>
                     <Typography
                       className={`font-medium ${selected ? 'text-primary' : 'text-text'}`}
@@ -205,12 +257,15 @@ export default function TopNav() {
           </Box>
         </Popover>
         <Divider className="my-1 border-[#3f424a]" />
-        <MenuItem className="min-h-[64px] gap-3 rounded-md px-4 !text-[18px] !text-[#d0d2d8]">
-          <GroupAddOutlinedIcon className="!text-[24px] !text-[#d0d2d8]" />
+        <MenuItem className="min-h-[64px] gap-3 rounded-md px-4 text-[18px] text-[#d0d2d8]">
+          <Users className="text-[#d0d2d8]" size={16} strokeWidth={2} />
           Switch account
         </MenuItem>
-        <MenuItem onClick={handleLogout} className="min-h-[64px] gap-3 rounded-md px-4 !text-[18px] !text-[#d0d2d8]">
-          <LogoutOutlinedIcon className="!text-[24px] !text-[#d0d2d8]" />
+        <MenuItem
+          onClick={handleLogout}
+          className="min-h-[64px] gap-3 rounded-md px-4 text-[18px] text-[#d0d2d8]"
+        >
+          <LogOut className="text-[#d0d2d8]" size={16} strokeWidth={2} />
           Log out
         </MenuItem>
       </Menu>

@@ -96,5 +96,16 @@ export const muiTheme = createTheme({
         },
       },
     },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          color: 'var(--ds-text-subtle)',
+          borderRadius: 8,
+          '&:hover': {
+            backgroundColor: 'rgb(var(--color-surface-hover))',
+          },
+        },
+      },
+    },
   },
 });
