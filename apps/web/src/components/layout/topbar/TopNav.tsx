@@ -13,15 +13,13 @@ import {
   Typography,
   UserAvatar,
 } from '@/components/ui';
-import {
-  Bell,
-  CircleHelp,
-  CircleUserRound,
-  LogOut,
-  MoonStar,
-  Settings,
-  Users,
-} from 'lucide-react';
+import Bell from 'lucide-react/dist/esm/icons/bell';
+import CircleHelp from 'lucide-react/dist/esm/icons/circle-help';
+import CircleUserRound from 'lucide-react/dist/esm/icons/circle-user-round';
+import LogOut from 'lucide-react/dist/esm/icons/log-out';
+import MoonStar from 'lucide-react/dist/esm/icons/moon-star';
+import Settings from 'lucide-react/dist/esm/icons/settings';
+import Users from 'lucide-react/dist/esm/icons/users';
 import { startKeycloakLogout } from '@/features/auth/api';
 import { useThemeMode } from '@/hooks/useThemeMode';
 import type { ThemePreference } from '@/theme/themeMode';
@@ -50,19 +48,16 @@ const topActionTooltipSx = {
 
 const currentUserName = 'Hiếu Đào';
 
-const themePreviewBaseClassName =
-  'relative h-[52px] w-[88px] overflow-hidden rounded border border-border before:absolute before:left-1.5 before:right-1.5 before:top-1 before:h-1.5 before:rounded-full before:content-[""] after:absolute after:bottom-1.5 after:left-1.5 after:top-3.5 after:w-[18px] after:rounded-sm after:content-[""]';
-
 function getThemePreviewClassName(value: ThemePreference) {
   if (value === 'dark') {
-    return `${themePreviewBaseClassName} bg-[rgb(29_33_37)] before:bg-[rgb(56_65_74)] after:bg-[rgb(34_39_43)]`;
+    return 'topnav__theme-preview topnav__theme-preview--dark';
   }
 
   if (value === 'light') {
-    return `${themePreviewBaseClassName} bg-[rgb(255_255_255)] before:bg-border after:bg-bg`;
+    return 'topnav__theme-preview topnav__theme-preview--light';
   }
 
-  return `${themePreviewBaseClassName} bg-[linear-gradient(90deg,rgb(29_33_37)_0%,rgb(29_33_37)_50%,rgb(255_255_255)_50%,rgb(255_255_255)_100%)] before:bg-border after:bg-bg`;
+  return 'topnav__theme-preview topnav__theme-preview--system';
 }
 
 export default function TopNav() {
@@ -100,7 +95,7 @@ export default function TopNav() {
   };
 
   return (
-    <Box className="flex items-center gap-1.5" paddingRight={2}>
+    <Box className="topnav">
       {topActions.map((action) => (
         <Tooltip
           key={action.label}
@@ -121,7 +116,7 @@ export default function TopNav() {
       <IconButton
         size="small"
         onClick={handleMenuOpen}
-        className="p-0"
+        className="topnav__avatar-btn"
         aria-label="User menu"
         aria-controls={menuOpen ? 'topbar-user-menu' : undefined}
         aria-haspopup="true"
@@ -130,7 +125,7 @@ export default function TopNav() {
         <UserAvatar
           name={currentUserName}
           size="small"
-          className="font-semibold"
+          className="topnav__avatar"
         />
       </IconButton>
 
@@ -142,46 +137,31 @@ export default function TopNav() {
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
         PaperProps={{
-          className:
-            'mt-1 min-w-[320px] rounded-xl border border-[#3b3e45] bg-[#2b2d33] p-1.5 text-[#c6c8ce] shadow-[0_18px_34px_rgba(0,0,0,0.45)]',
+          className: 'topnav__user-menu-paper',
         }}
       >
-        <Box
-          sx={{
-            mt: 0,
-            mx: 1,
-            mb: 1,
-            display: 'flex',
-            alignItems: 'center',
-            gap: 2,
-            px: 2,
-            py: 1.5,
-            borderRadius: '4px',
-            bgcolor: 'var(--ds-surface-sunken)',
-            border: '1px solid #2f3238',
-          }}
-        >
+        <Box className="topnav__user-card">
           <UserAvatar
             name={currentUserName}
             size="large"
-            className="font-semibold"
+            className="topnav__user-card-avatar"
           />
           <Box sx={{ minWidth: 0 }}>
-            <Typography fontWeight={700} sx={{ fontSize: 20, lineHeight: 1.15, color: '#f1f2f4' }}>
+            <Typography className="topnav__user-name">
               {currentUserName}
             </Typography>
-            <Typography sx={{ mt: 0.5, fontSize: 14, color: '#9ea2ab' }}>
+            <Typography className="topnav__user-email">
               dnhieu92@gmail.com
             </Typography>
           </Box>
         </Box>
 
-        <MenuItem className="min-h-[64px] gap-3 rounded-md px-4 text-[18px] text-[#d0d2d8]">
-          <CircleUserRound className="text-[#d0d2d8]" size={16} strokeWidth={2} />
+        <MenuItem className="topnav__menu-item">
+          <CircleUserRound className="topnav__menu-item-icon" size={16} strokeWidth={2} />
           Profile
         </MenuItem>
-        <MenuItem className="min-h-[64px] gap-3 rounded-md px-4 text-[18px] text-[#d0d2d8]">
-          <Settings className="text-[#d0d2d8]" size={16} strokeWidth={2} />
+        <MenuItem className="topnav__menu-item">
+          <Settings className="topnav__menu-item-icon" size={16} strokeWidth={2} />
           Account settings
         </MenuItem>
         <MenuItem
@@ -190,12 +170,12 @@ export default function TopNav() {
           aria-haspopup="true"
           aria-controls={themeMenuOpen ? 'topbar-theme-menu' : undefined}
           aria-expanded={themeMenuOpen ? 'true' : undefined}
-          className="min-h-[64px] gap-3 rounded-md px-4 text-[18px] text-[#d0d2d8] [&.Mui-selected]:bg-[#123263] [&.Mui-selected]:text-[#8fb8f6] [&.Mui-selected:hover]:bg-[#144794]"
+          className="topnav__menu-item topnav__menu-item--theme"
         >
-          <MoonStar className="text-[#d0d2d8]" size={16} strokeWidth={2} />
+          <MoonStar className="topnav__menu-item-icon" size={16} strokeWidth={2} />
           Theme
           <Box
-            className={`ml-auto text-[28px] leading-none ${themeMenuOpen ? 'text-[#8fb8f6]' : 'text-[#b8bbc3]'}`}
+            className={`topnav__menu-arrow ${themeMenuOpen ? 'topnav__menu-arrow--open' : ''}`}
           >
             ›
           </Box>
@@ -211,11 +191,10 @@ export default function TopNav() {
           disableAutoFocus
           disableEnforceFocus
           PaperProps={{
-            className:
-              '-mt-0.5 mr-0.5 min-w-[300px] rounded-lg border border-border bg-surface p-0.5 shadow-[0_12px_24px_rgba(9,30,66,0.18)]',
+            className: 'topnav__theme-popover-paper',
           }}
         >
-          <Box className="flex flex-col">
+          <Box className="topnav__theme-list">
             {themeOptions.map((option) => {
               const selected = preference === option.value;
 
@@ -224,15 +203,15 @@ export default function TopNav() {
                   key={option.value}
                   onClick={() => handleThemeChange(option.value)}
                   selected={selected}
-                  className="grid grid-cols-[24px_88px_1fr] items-center gap-2 rounded-md px-1.5 py-2.5 [&.Mui-selected]:bg-primary/15 [&.Mui-selected:hover]:bg-primary/20"
+                  className="topnav__theme-item"
                 >
                   <Box
-                    className={`grid h-[22px] w-[22px] place-items-center rounded-full border-2 ${
-                      selected ? 'border-primary' : 'border-border-strong'
+                    className={`topnav__theme-radio ${
+                      selected ? 'topnav__theme-radio--selected' : ''
                     }`}
                   >
                     {selected ? (
-                      <Box className="h-2.5 w-2.5 rounded-full bg-primary" />
+                      <Box className="topnav__theme-radio-dot" />
                     ) : null}
                   </Box>
                   <Box
@@ -241,12 +220,12 @@ export default function TopNav() {
                   />
                   <Box>
                     <Typography
-                      className={`font-medium ${selected ? 'text-primary' : 'text-text'}`}
+                      className={`topnav__theme-label ${selected ? 'topnav__theme-label--selected' : ''}`}
                     >
                       {option.label}
                     </Typography>
                     {option.value === 'system' ? (
-                      <Typography variant="body2" className="text-text-muted">
+                      <Typography variant="body2" className="topnav__theme-current">
                         Current: {mode}
                       </Typography>
                     ) : null}
@@ -256,16 +235,16 @@ export default function TopNav() {
             })}
           </Box>
         </Popover>
-        <Divider className="my-1 border-[#3f424a]" />
-        <MenuItem className="min-h-[64px] gap-3 rounded-md px-4 text-[18px] text-[#d0d2d8]">
-          <Users className="text-[#d0d2d8]" size={16} strokeWidth={2} />
+        <Divider className="topnav__divider" />
+        <MenuItem className="topnav__menu-item">
+          <Users className="topnav__menu-item-icon" size={16} strokeWidth={2} />
           Switch account
         </MenuItem>
         <MenuItem
           onClick={handleLogout}
-          className="min-h-[64px] gap-3 rounded-md px-4 text-[18px] text-[#d0d2d8]"
+          className="topnav__menu-item"
         >
-          <LogOut className="text-[#d0d2d8]" size={16} strokeWidth={2} />
+          <LogOut className="topnav__menu-item-icon" size={16} strokeWidth={2} />
           Log out
         </MenuItem>
       </Menu>

@@ -27,29 +27,29 @@ export default function Sidebar({
     <Box
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      className={`fixed left-0 z-[1300] w-[260px] border-r border-border bg-inherit ${
-        isOverlay ? 'top-14 h-[calc(100vh-56px)] animate-sidebar-slide-in shadow-2xl' : 'top-0 h-screen'
+      className={`jira-sidebar ${
+        isOverlay ? 'jira-sidebar--overlay' : 'jira-sidebar--pinned'
       }`}
     >
       {showHeader ? (
-        <Box className="flex h-14 items-center justify-between pl-2 pr-4">
-          <Box className="flex items-center gap-2">
-            <IconButton size="small" className="h-8 w-8" aria-label="Open apps">
+        <Box className="jira-sidebar__header">
+          <Box className="jira-sidebar__header-left">
+            <IconButton size="small" className="jira-sidebar__icon-btn" aria-label="Open apps">
               <LayoutGrid size={16} strokeWidth={2} />
             </IconButton>
 
-            <ButtonBase className="flex h-8 items-center gap-1 rounded px-1 hover:bg-[rgb(var(--color-surface-hover))]">
-              <Box className="h-[20px] w-[20px] shrink-0">
+            <ButtonBase className="jira-sidebar__brand-btn">
+              <Box className="jira-sidebar__brand-logo">
                 <LogoIcon />
               </Box>
-              <Typography fontWeight={600} className="text-text">
+              <Typography className="jira-sidebar__brand-text">
                 Jira
               </Typography>
             </ButtonBase>
           </Box>
           <IconButton
             size="small"
-            className="h-8 w-8"
+            className="jira-sidebar__icon-btn"
             aria-label="Collapse sidebar"
             onClick={onCollapsePinned}
           >

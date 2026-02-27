@@ -1,5 +1,8 @@
 import '../styles/colors.css';
+import '../components/layout/app-shell.scss';
 import '../components/layout/sidebar/sidebar.scss';
+import '../components/layout/topbar/topbar.scss';
+import '../components/layout/topbar/topnav.scss';
 import './globals.css';
 import type { Metadata } from 'next';
 import MuiThemeProvider from '../theme/MuiThemeProvider';
@@ -15,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="bg text">
+      <body>
         <MuiThemeProvider>{children}</MuiThemeProvider>
       </body>
     </html>

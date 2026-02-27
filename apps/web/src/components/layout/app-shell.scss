@@ -1,0 +1,26 @@
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: rgb(var(--color-bg));
+  color: rgb(var(--color-text));
+}
+
+.app-shell-content {
+  display: flex;
+  flex: 1;
+  background: rgb(var(--color-bg));
+}
+
+.app-shell-overlay-backdrop {
+  position: fixed;
+  inset: 56px 0 0 0;
+  z-index: 1200;
+}
+
+.app-shell-main {
+  flex: 1;
+  padding: 24px;
+  background: rgb(var(--color-bg));
+  overflow: auto;
+}

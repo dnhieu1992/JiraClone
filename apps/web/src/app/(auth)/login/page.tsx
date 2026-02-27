@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { Box, Typography } from '@/components/ui';
 import { JiraSkeletonBackdrop } from '@/components/ui/JiraSkeletonBackdrop';
 import { startKeycloakLogin } from '@/features/auth/api';
+import '../auth.scss';
 
 export default function LoginPage() {
   useEffect(() => {
@@ -49,24 +50,24 @@ export default function LoginPage() {
             justifyContent: 'center',
           }}
         >
-          <div className="flex items-center mb-8">
-            <div className="w-10 h-10 bg-[#0052CC] rounded flex items-center justify-center mr-3">
-              <Typography variant="h5" className="text-white font-bold">
+          <div className="auth-login-brand">
+            <div className="auth-login-brand__icon">
+              <Typography variant="h5" className="auth-login-brand__icon-text">
                 J
               </Typography>
             </div>
-            <Typography variant="h5" className="font-semibold text-[#172B4D]">
+            <Typography variant="h5" className="auth-login-brand__name">
               Jira
             </Typography>
           </div>
 
           <Typography
             variant="h4"
-            className="font-semibold mb-4 text-[#172B4D]"
+            className="auth-login-title"
           >
             Continue to Jira
           </Typography>
-          <Typography variant="body2" className="text-[#6B778C] mb-6">
+          <Typography variant="body2" className="auth-login-subtitle">
             You will be redirected to Keycloak to complete sign in.
           </Typography>
         </Box>

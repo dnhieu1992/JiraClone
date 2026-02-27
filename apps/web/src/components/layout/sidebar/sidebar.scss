@@ -12,6 +12,71 @@
   margin-top: 24px;
 }
 
+.jira-sidebar {
+  position: fixed;
+  left: 0;
+  z-index: 1300;
+  width: 260px;
+  border-right: 1px solid rgb(var(--color-border));
+  background: inherit;
+}
+
+.jira-sidebar--pinned {
+  top: 0;
+  height: 100vh;
+}
+
+.jira-sidebar--overlay {
+  top: 56px;
+  height: calc(100vh - 56px);
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  animation: sidebar-slide-in 180ms ease-out;
+}
+
+.jira-sidebar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  padding-left: 8px;
+  padding-right: 16px;
+}
+
+.jira-sidebar__header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.jira-sidebar__icon-btn {
+  width: 32px;
+  height: 32px;
+}
+
+.jira-sidebar__brand-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 32px;
+  border-radius: 8px;
+  padding: 0 4px;
+}
+
+.jira-sidebar__brand-btn:hover {
+  background: rgb(var(--color-surface-hover));
+}
+
+.jira-sidebar__brand-logo {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.jira-sidebar__brand-text {
+  color: rgb(var(--color-text));
+  font-weight: 600;
+}
+
 .jira-sidebar-menu-item {
   position: relative;
   display: flex;

@@ -1,0 +1,228 @@
+.topnav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-right: 16px;
+}
+
+.topnav__avatar-btn {
+  padding: 0;
+}
+
+.topnav__avatar {
+  font-weight: 600;
+}
+
+.topnav__user-menu-paper {
+  margin-top: 4px;
+  min-width: 320px;
+  border-radius: 12px;
+  border: 1px solid #3b3e45;
+  background: #2b2d33;
+  padding: 6px;
+  color: #c6c8ce;
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.45);
+}
+
+.topnav__user-card {
+  margin: 0 8px 8px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border-radius: 4px;
+  background: var(--ds-surface-sunken);
+  border: 1px solid #2f3238;
+}
+
+.topnav__user-card-avatar {
+  font-weight: 600;
+}
+
+.topnav__user-name {
+  font-size: 20px;
+  line-height: 1.15;
+  color: #f1f2f4;
+  font-weight: 700;
+}
+
+.topnav__user-email {
+  margin-top: 4px;
+  font-size: 14px;
+  color: #9ea2ab;
+}
+
+.topnav__menu-item {
+  min-height: 64px;
+  gap: 12px;
+  border-radius: 6px;
+  padding: 0 16px;
+  font-size: 18px;
+  color: #d0d2d8;
+}
+
+.topnav__menu-item-icon {
+  color: #d0d2d8;
+}
+
+.topnav__menu-item--theme.Mui-selected {
+  background: #123263;
+  color: #8fb8f6;
+}
+
+.topnav__menu-item--theme.Mui-selected:hover {
+  background: #144794;
+}
+
+.topnav__menu-arrow {
+  margin-left: auto;
+  font-size: 28px;
+  line-height: 1;
+  color: #b8bbc3;
+}
+
+.topnav__menu-arrow--open {
+  color: #8fb8f6;
+}
+
+.topnav__theme-popover-paper {
+  margin-top: -2px;
+  margin-right: 2px;
+  min-width: 300px;
+  border-radius: 8px;
+  border: 1px solid rgb(var(--color-border));
+  background: rgb(var(--color-surface));
+  padding: 2px;
+  box-shadow: 0 12px 24px rgba(9, 30, 66, 0.18);
+}
+
+.topnav__theme-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.topnav__theme-item {
+  display: grid;
+  grid-template-columns: 24px 88px 1fr;
+  align-items: center;
+  gap: 8px;
+  border-radius: 6px;
+  padding: 10px 6px;
+}
+
+.topnav__theme-item.Mui-selected {
+  background: rgb(var(--color-primary) / 0.15);
+}
+
+.topnav__theme-item.Mui-selected:hover {
+  background: rgb(var(--color-primary) / 0.2);
+}
+
+.topnav__theme-radio {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  border-radius: 999px;
+  border: 2px solid rgb(var(--color-border-strong));
+}
+
+.topnav__theme-radio--selected {
+  border-color: rgb(var(--color-primary));
+}
+
+.topnav__theme-radio-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgb(var(--color-primary));
+}
+
+.topnav__theme-preview {
+  position: relative;
+  width: 88px;
+  height: 52px;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid rgb(var(--color-border));
+}
+
+.topnav__theme-preview::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  top: 4px;
+  height: 6px;
+  border-radius: 999px;
+}
+
+.topnav__theme-preview::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  bottom: 6px;
+  top: 14px;
+  width: 18px;
+  border-radius: 2px;
+}
+
+.topnav__theme-preview--light {
+  background: rgb(255 255 255);
+}
+
+.topnav__theme-preview--light::before {
+  background: rgb(var(--color-border));
+}
+
+.topnav__theme-preview--light::after {
+  background: rgb(var(--color-bg));
+}
+
+.topnav__theme-preview--dark {
+  background: rgb(29 33 37);
+}
+
+.topnav__theme-preview--dark::before {
+  background: rgb(56 65 74);
+}
+
+.topnav__theme-preview--dark::after {
+  background: rgb(34 39 43);
+}
+
+.topnav__theme-preview--system {
+  background: linear-gradient(
+    90deg,
+    rgb(29 33 37) 0%,
+    rgb(29 33 37) 50%,
+    rgb(255 255 255) 50%,
+    rgb(255 255 255) 100%
+  );
+}
+
+.topnav__theme-preview--system::before {
+  background: rgb(var(--color-border));
+}
+
+.topnav__theme-preview--system::after {
+  background: rgb(var(--color-bg));
+}
+
+.topnav__theme-label {
+  font-weight: 500;
+  color: rgb(var(--color-text));
+}
+
+.topnav__theme-label--selected {
+  color: rgb(var(--color-primary));
+}
+
+.topnav__theme-current {
+  color: rgb(var(--color-text-muted));
+}
+
+.topnav__divider {
+  margin: 4px 0;
+  border-color: #3f424a;
+}

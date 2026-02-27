@@ -1,0 +1,37 @@
+.auth-login-brand {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.auth-login-brand__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0052cc;
+}
+
+.auth-login-brand__icon-text {
+  color: #fff;
+  font-weight: 700;
+}
+
+.auth-login-brand__name {
+  color: #172b4d;
+  font-weight: 600;
+}
+
+.auth-login-title {
+  margin-bottom: 16px;
+  color: #172b4d;
+  font-weight: 600;
+}
+
+.auth-login-subtitle {
+  margin-bottom: 24px;
+  color: #6b778c;
+}

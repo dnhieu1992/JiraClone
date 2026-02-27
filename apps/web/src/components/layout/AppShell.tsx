@@ -84,13 +84,13 @@ export default function AppShell({
   }, []);
 
   return (
-    <Box className="min-h-screen flex flex-col bg-bg text-text">
+    <Box className="app-shell">
       <Topbar
         onCollapseClick={handleTopbarCollapseClick}
         onCollapseMouseEnter={handleTopbarCollapseMouseEnter}
         onCollapseMouseLeave={handleTopbarCollapseMouseLeave}
       />
-      <Box className="flex flex-1 bg-bg">
+      <Box className="app-shell-content">
         {pinnedExpanded ? (
           <Sidebar
             mode="pinned"
@@ -101,7 +101,7 @@ export default function AppShell({
         {!pinnedExpanded && collapsedOverlayOpen ? (
           <>
             <Box
-              className="fixed inset-x-0 bottom-0 top-14 z-[1200]"
+              className="app-shell-overlay-backdrop"
               onClick={() => setCollapsedOverlayOpen(false)}
             />
             <Sidebar
@@ -116,7 +116,7 @@ export default function AppShell({
 
         <Box
           component="main"
-          className="flex-1 p-6 bg-bg overflow-auto"
+          className="app-shell-main"
         >
           {children}
         </Box>
