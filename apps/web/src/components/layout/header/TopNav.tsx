@@ -118,7 +118,7 @@ export default function TopNav() {
         onClick={handleMenuOpen}
         className="topnav__avatar-btn"
         aria-label="User menu"
-        aria-controls={menuOpen ? 'topbar-user-menu' : undefined}
+        aria-controls={menuOpen ? 'header-user-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={menuOpen ? 'true' : undefined}
       >
@@ -130,7 +130,7 @@ export default function TopNav() {
       </IconButton>
 
       <Menu
-        id="topbar-user-menu"
+        id="header-user-menu"
         anchorEl={menuAnchor}
         open={menuOpen}
         onClose={handleMenuClose}
@@ -168,7 +168,7 @@ export default function TopNav() {
           onClick={handleThemeOpen}
           selected={themeMenuOpen}
           aria-haspopup="true"
-          aria-controls={themeMenuOpen ? 'topbar-theme-menu' : undefined}
+          aria-controls={themeMenuOpen ? 'header-theme-menu' : undefined}
           aria-expanded={themeMenuOpen ? 'true' : undefined}
           className="topnav__menu-item topnav__menu-item--theme"
         >
@@ -181,7 +181,7 @@ export default function TopNav() {
           </Box>
         </MenuItem>
         <Popover
-          id="topbar-theme-menu"
+          id="header-theme-menu"
           open={themeMenuOpen}
           anchorEl={themeAnchor}
           onClose={handleThemeClose}

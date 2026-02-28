@@ -44,7 +44,7 @@
   --color-danger-text-strong: 174 46 36;
 
   /* spacing */
-  --space-0: 0;
+  --space-0: 0px;
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -182,7 +182,7 @@ html[data-theme='dark'] {
   --color-danger-text-strong: 241 91 80;
 
   /* spacing */
-  --space-0: 0;
+  --space-0: 0px;
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;

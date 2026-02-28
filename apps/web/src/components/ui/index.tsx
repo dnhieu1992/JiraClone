@@ -8,6 +8,7 @@ export { default as CircularProgress } from '@mui/material/CircularProgress';
 export { default as Checkbox } from '@mui/material/Checkbox';
 export { default as Divider } from '@mui/material/Divider';
 export { default as FormControlLabel } from '@mui/material/FormControlLabel';
+export { default as Grid } from '@mui/material/Grid';
 export { default as IconButton } from '@mui/material/IconButton';
 export { default as InputAdornment } from '@mui/material/InputAdornment';
 export { default as Menu } from '@mui/material/Menu';

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Sidebar from './sidebar/Sidebar';
-import Topbar from './topbar';
+import Header from './header';
 import { Box } from '@/components/ui';
 
 const SIDEBAR_COLLAPSED_STORAGE_KEY = 'jira.sidebar.collapsed';
@@ -36,7 +36,7 @@ export default function AppShell({
     }, 120);
   };
 
-  const handleTopbarCollapseClick = () => {
+  const handleHeaderCollapseClick = () => {
     if (pinnedExpanded) {
       setPinnedExpanded(false);
       setCollapsedOverlayOpen(false);
@@ -47,7 +47,7 @@ export default function AppShell({
     setCollapsedOverlayOpen(false);
   };
 
-  const handleTopbarCollapseMouseEnter = () => {
+  const handleHeaderCollapseMouseEnter = () => {
     if (pinnedExpanded) {
       return;
     }
@@ -55,7 +55,7 @@ export default function AppShell({
     setCollapsedOverlayOpen(true);
   };
 
-  const handleTopbarCollapseMouseLeave = () => {
+  const handleHeaderCollapseMouseLeave = () => {
     if (!pinnedExpanded) {
       scheduleOverlayClose();
     }
@@ -85,10 +85,10 @@ export default function AppShell({
 
   return (
     <Box className="app-shell">
-      <Topbar
-        onCollapseClick={handleTopbarCollapseClick}
-        onCollapseMouseEnter={handleTopbarCollapseMouseEnter}
-        onCollapseMouseLeave={handleTopbarCollapseMouseLeave}
+      <Header
+        onCollapseClick={handleHeaderCollapseClick}
+        onCollapseMouseEnter={handleHeaderCollapseMouseEnter}
+        onCollapseMouseLeave={handleHeaderCollapseMouseLeave}
       />
       <Box className="app-shell-content">
         {pinnedExpanded ? (

@@ -2,7 +2,7 @@
 
 import LayoutGrid from 'lucide-react/dist/esm/icons/layout-grid';
 import PanelRightOpen from 'lucide-react/dist/esm/icons/panel-right-open';
-import LogoIcon from '@/components/layout/topbar/Logo';
+import LogoIcon from '@/components/layout/header/Logo';
 import { Box, ButtonBase, IconButton, Typography } from '@/components/ui';
 import MenuList from './MenuList';
 
