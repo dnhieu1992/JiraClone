@@ -116,7 +116,9 @@ export default function AppShell({
 
         <Box
           component="main"
-          className="app-shell-main"
+          className={`app-shell-main ${
+            pinnedExpanded ? 'app-shell-main--with-sidebar' : ''
+          }`}
         >
           {children}
         </Box>

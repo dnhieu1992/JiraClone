@@ -14,13 +14,19 @@
 
 .app-shell-overlay-backdrop {
   position: fixed;
-  inset: 56px 0 0 0;
-  z-index: 1200;
+  inset: var(--sidebar-header-height) var(--space-0) var(--space-0) var(--space-0);
+  z-index: var(--z-index-overlay);
 }
 
 .app-shell-main {
   flex: 1;
-  padding: 24px;
+  padding: var(--space-8) var(--space-12);
   background: rgb(var(--color-bg));
   overflow: auto;
+  margin-left: var(--space-0);
+  transition: margin-left 180ms ease;
+}
+
+.app-shell-main--with-sidebar {
+  margin-left: var(--sidebar-width);
 }
