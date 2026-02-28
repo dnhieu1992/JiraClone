@@ -3,13 +3,13 @@
   --color-bg: 248 248 248;
   --color-surface: 255 255 255;
   --color-surface-subtle: 240 241 242;
-  --color-surface-hover: 221 222 225;
+  --color-surface-hover: 255 255 255;
   --color-surface-raised: 255 255 255;
-  --ds-surface-sunken: #F8F8F8;
+  --ds-surface-sunken: #f8f8f8;
 
   /* text / icon */
   --color-text: 41 42 46;
-  --color-text-muted: 107 110 118;
+  --color-text-muted: 107 110 117;
   --color-text-subtle: 80 82 88;
   --color-text-inverse: 255 255 255;
   --color-icon: 41 42 46;
@@ -124,16 +124,36 @@
   /* sidebar colors (light) */
   --sidebar-c-bg: 255 255 255;
   --sidebar-c-divider: 221 221 221;
-  --sidebar-c-text: 80 81 88;
+  --sidebar-c-text: 80 82 88;
   --sidebar-c-text-strong: 29 33 37;
   --sidebar-c-hover-bg: 9 30 66;
   --sidebar-c-hover-bg-alpha: 0.06;
-  --sidebar-c-active-bg: 234 242 253;
-  --sidebar-c-active-fg: 50 102 212;
-  --sidebar-c-active-indicator: 50 102 212;
+  --sidebar-c-active-bg: 207 225 253;
+  --sidebar-c-active-fg: 24 104 219;
+  --sidebar-c-active-indicator: 24 104 219;
   --sidebar-c-chip-bg: 221 222 224;
   --sidebar-c-header-hover-bg: 9 30 66;
   --sidebar-c-header-hover-bg-alpha: 0.06;
+
+  /* topnav colors */
+  --topnav-c-user-card-bg: var(--ds-surface-sunken);
+  --topnav-c-user-card-border: rgb(var(--color-border));
+  --topnav-c-user-name: rgb(var(--color-text));
+  --topnav-c-user-email: rgb(var(--color-text-muted));
+  --topnav-c-menu-bg: rgb(var(--color-surface));
+  --topnav-c-menu-border: rgb(var(--color-border));
+  --topnav-c-menu-text: rgb(var(--color-text));
+  --topnav-c-menu-item-text: rgb(var(--color-text));
+  --topnav-c-menu-item-icon: rgb(var(--color-text-muted));
+  --topnav-c-menu-item-hover-bg: rgb(var(--color-surface-subtle));
+  --topnav-c-menu-item-hover-text: rgb(var(--color-text));
+  --topnav-c-menu-item-hover-icon: rgb(var(--color-text));
+  --topnav-c-menu-arrow: rgb(var(--color-text-muted));
+  --topnav-c-menu-arrow-open: rgb(var(--color-primary));
+  --topnav-c-menu-divider: rgb(var(--color-border));
+  --topnav-c-menu-theme-selected-bg: rgb(var(--color-primary) / 0.12);
+  --topnav-c-menu-theme-selected-text: rgb(var(--color-primary));
+  --topnav-c-menu-theme-selected-hover-bg: rgb(var(--color-primary) / 0.18);
 }
 
 html[data-theme='dark'] {
@@ -272,4 +292,24 @@ html[data-theme='dark'] {
   --sidebar-c-chip-bg: 221 222 224;
   --sidebar-c-header-hover-bg: 255 255 255;
   --sidebar-c-header-hover-bg-alpha: 0.06;
+
+  /* topnav colors */
+  --topnav-c-user-card-bg: var(--ds-surface-sunken);
+  --topnav-c-user-card-border: #2f3238;
+  --topnav-c-user-name: #f1f2f4;
+  --topnav-c-user-email: #9ea2ab;
+  --topnav-c-menu-bg: #2b2d33;
+  --topnav-c-menu-border: #3b3e45;
+  --topnav-c-menu-text: #c6c8ce;
+  --topnav-c-menu-item-text: #d0d2d8;
+  --topnav-c-menu-item-icon: #d0d2d8;
+  --topnav-c-menu-item-hover-bg: rgb(255 255 255 / 0.06);
+  --topnav-c-menu-item-hover-text: #f1f2f4;
+  --topnav-c-menu-item-hover-icon: #f1f2f4;
+  --topnav-c-menu-arrow: #b8bbc3;
+  --topnav-c-menu-arrow-open: #8fb8f6;
+  --topnav-c-menu-divider: #3f424a;
+  --topnav-c-menu-theme-selected-bg: #123263;
+  --topnav-c-menu-theme-selected-text: #8fb8f6;
+  --topnav-c-menu-theme-selected-hover-bg: #144794;
 }

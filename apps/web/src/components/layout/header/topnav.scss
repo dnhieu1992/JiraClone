@@ -18,10 +18,10 @@
   margin-top: 4px;
   min-width: 320px;
   border-radius: 12px;
-  border: 1px solid #3b3e45;
-  background: #2b2d33;
+  border: 1px solid var(--topnav-c-menu-border);
+  background: var(--topnav-c-menu-bg);
   padding: 6px;
-  color: #c6c8ce;
+  color: var(--topnav-c-menu-text);
   box-shadow: 0 18px 34px rgba(0, 0, 0, 0.45);
 }
 
@@ -32,8 +32,8 @@
   gap: 16px;
   padding: 12px 16px;
   border-radius: 4px;
-  background: var(--ds-surface-sunken);
-  border: 1px solid #2f3238;
+  background: var(--topnav-c-user-card-bg);
+  border: 1px solid var(--topnav-c-user-card-border);
 }
 
 .topnav__user-card-avatar {
@@ -44,47 +44,55 @@
 .topnav__user-name {
   font-size: 20px;
   line-height: var(--line-height-heading);
-  color: #f1f2f4;
+  color: var(--topnav-c-user-name);
   font-weight: var(--font-weight-bold);
 }
 
 .topnav__user-email {
   margin-top: 4px;
   font-size: 14px;
-  color: #9ea2ab;
+  color: var(--topnav-c-user-email);
 }
 
 .topnav__menu-item {
-  min-height: 64px;
   gap: 12px;
   border-radius: 6px;
-  padding: 0 16px;
+  padding: 8px 16px;
   font-size: 18px;
-  color: #d0d2d8;
+  color: var(--topnav-c-menu-item-text);
 }
 
 .topnav__menu-item-icon {
-  color: #d0d2d8;
+  color: var(--topnav-c-menu-item-icon);
+}
+
+.topnav__menu-item:hover {
+  background: var(--topnav-c-menu-item-hover-bg);
+  color: var(--topnav-c-menu-item-hover-text);
+}
+
+.topnav__menu-item:hover .topnav__menu-item-icon {
+  color: var(--topnav-c-menu-item-hover-icon);
 }
 
 .topnav__menu-item--theme.Mui-selected {
-  background: #123263;
-  color: #8fb8f6;
+  background: var(--topnav-c-menu-theme-selected-bg);
+  color: var(--topnav-c-menu-theme-selected-text);
 }
 
 .topnav__menu-item--theme.Mui-selected:hover {
-  background: #144794;
+  background: var(--topnav-c-menu-theme-selected-hover-bg);
 }
 
 .topnav__menu-arrow {
   margin-left: auto;
   font-size: 28px;
   line-height: var(--line-height-none);
-  color: #b8bbc3;
+  color: var(--topnav-c-menu-arrow);
 }
 
 .topnav__menu-arrow--open {
-  color: #8fb8f6;
+  color: var(--topnav-c-menu-arrow-open);
 }
 
 .topnav__theme-popover-paper {
@@ -227,5 +235,5 @@
 
 .topnav__divider {
   margin: 4px 0;
-  border-color: #3f424a;
+  border-color: var(--topnav-c-menu-divider);
 }

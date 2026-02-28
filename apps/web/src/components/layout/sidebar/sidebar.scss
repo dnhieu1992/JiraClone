@@ -86,7 +86,7 @@
   justify-content: space-between;
   border-radius: 10px;
   padding: 8px 10px 8px 8px;
-  color: rgb(159 163 172);
+  color: rgb(var(--sidebar-c-text));
   text-decoration: none;
 }
 
@@ -100,8 +100,14 @@
 }
 
 .jira-sidebar-menu-item--active {
-  background: rgb(27 50 82);
-  color: rgb(87 157 255);
+  background: rgb(var(--sidebar-c-active-bg));
+  color: rgb(var(--sidebar-c-active-fg));
+}
+
+.jira-sidebar-menu-item--active:hover {
+  background:
+    linear-gradient(rgb(0 0 0 / 0.06), rgb(0 0 0 / 0.06)),
+    rgb(var(--sidebar-c-active-bg));
 }
 
 .jira-sidebar-menu-item-indicator {
@@ -112,7 +118,7 @@
   width: 4px;
   transform: translateY(-50%);
   border-radius: 0 2px 2px 0;
-  background: rgb(87 157 255);
+  background: rgb(var(--sidebar-c-active-indicator));
 }
 
 .jira-sidebar-menu-item-content {
@@ -130,14 +136,14 @@
   font-size: 14px;
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-md);
-  color: rgb(159 163 172);
+  color: rgb(var(--sidebar-c-text));
 }
 
 .jira-sidebar-menu-item-label--active {
-  color: rgb(87 157 255);
+  color: rgb(var(--sidebar-c-active-fg));
 }
 
 .jira-sidebar-menu-item-right-icon {
   flex-shrink: 0;
-  color: rgb(159 163 172);
+  color: rgb(var(--sidebar-c-text));
 }
