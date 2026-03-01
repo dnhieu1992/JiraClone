@@ -62,17 +62,30 @@ function getThemePreviewClassName(value: ThemePreference) {
 
 export default function TopNav() {
   const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
+  const [menuAnchorPosition, setMenuAnchorPosition] = useState<{
+    top: number;
+    left: number;
+  } | null>(null);
   const [themeAnchor, setThemeAnchor] = useState<null | HTMLElement>(null);
   const menuOpen = Boolean(menuAnchor);
   const themeMenuOpen = Boolean(themeAnchor);
   const { mode, preference, setMode } = useThemeMode();
 
   const handleMenuOpen = (event: MouseEvent<HTMLElement>) => {
+    const anchorRect = event.currentTarget.getBoundingClientRect();
+    const headerElement = event.currentTarget.closest('.header') as HTMLElement | null;
+    const headerRect = headerElement?.getBoundingClientRect();
+
+    setMenuAnchorPosition({
+      top: Math.round(headerRect?.bottom ?? anchorRect.bottom),
+      left: Math.round(anchorRect.right),
+    });
     setMenuAnchor(event.currentTarget);
   };
 
   const handleMenuClose = () => {
     setMenuAnchor(null);
+    setMenuAnchorPosition(null);
     setThemeAnchor(null);
   };
 
@@ -132,9 +145,10 @@ export default function TopNav() {
       <Menu
         id="header-user-menu"
         anchorEl={menuAnchor}
+        anchorReference="anchorPosition"
+        anchorPosition={menuAnchorPosition ?? undefined}
         open={menuOpen}
         onClose={handleMenuClose}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
         PaperProps={{
           className: 'topnav__user-menu-paper',
@@ -192,6 +206,7 @@ export default function TopNav() {
           disableEnforceFocus
           PaperProps={{
             className: 'topnav__theme-popover-paper',
+            style: { marginTop: 6 },
           }}
         >
           <Box className="topnav__theme-list">
