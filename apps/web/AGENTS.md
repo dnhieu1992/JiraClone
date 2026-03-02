@@ -23,6 +23,7 @@ Applies to all code under `apps/web`.
 
 ## Styling and UX
 - Use existing design tokens and Tailwind patterns in the codebase.
+- All visual primitives must use CSS variables/tokens (e.g., color, spacing, font size, font weight, line height, radius, shadows, z-index); do not hardcode literal values in CSS/SCSS/TSX styles.
 - For SCSS code generation, use BEM naming convention (`block`, `block__element`, `block--modifier`).
 - Keep responsive behavior for desktop and mobile.
 - Ensure accessibility basics: semantic elements, labels, keyboard support for controls.

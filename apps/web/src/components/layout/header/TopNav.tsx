@@ -73,7 +73,9 @@ export default function TopNav() {
 
   const handleMenuOpen = (event: MouseEvent<HTMLElement>) => {
     const anchorRect = event.currentTarget.getBoundingClientRect();
-    const headerElement = event.currentTarget.closest('.header') as HTMLElement | null;
+    const headerElement = event.currentTarget.closest(
+      '.header',
+    ) as HTMLElement | null;
     const headerRect = headerElement?.getBoundingClientRect();
 
     setMenuAnchorPosition({
@@ -120,9 +122,7 @@ export default function TopNav() {
             },
           }}
         >
-          <IconButton size="small">
-            {action.icon}
-          </IconButton>
+          <IconButton size="small">{action.icon}</IconButton>
         </Tooltip>
       ))}
 
@@ -171,11 +171,19 @@ export default function TopNav() {
         </Box>
 
         <MenuItem className="topnav__menu-item">
-          <CircleUserRound className="topnav__menu-item-icon" size={16} strokeWidth={2} />
+          <CircleUserRound
+            className="topnav__menu-item-icon"
+            size={16}
+            strokeWidth={2}
+          />
           Profile
         </MenuItem>
         <MenuItem className="topnav__menu-item">
-          <Settings className="topnav__menu-item-icon" size={16} strokeWidth={2} />
+          <Settings
+            className="topnav__menu-item-icon"
+            size={16}
+            strokeWidth={2}
+          />
           Account settings
         </MenuItem>
         <MenuItem
@@ -186,7 +194,11 @@ export default function TopNav() {
           aria-expanded={themeMenuOpen ? 'true' : undefined}
           className="topnav__menu-item topnav__menu-item--theme"
         >
-          <MoonStar className="topnav__menu-item-icon" size={16} strokeWidth={2} />
+          <MoonStar
+            className="topnav__menu-item-icon"
+            size={16}
+            strokeWidth={2}
+          />
           Theme
           <Box
             className={`topnav__menu-arrow ${themeMenuOpen ? 'topnav__menu-arrow--open' : ''}`}
@@ -240,7 +252,10 @@ export default function TopNav() {
                       {option.label}
                     </Typography>
                     {option.value === 'system' ? (
-                      <Typography variant="body2" className="topnav__theme-current">
+                      <Typography
+                        variant="body2"
+                        className="topnav__theme-current"
+                      >
                         Current: {mode}
                       </Typography>
                     ) : null}
@@ -255,11 +270,12 @@ export default function TopNav() {
           <Users className="topnav__menu-item-icon" size={16} strokeWidth={2} />
           Switch account
         </MenuItem>
-        <MenuItem
-          onClick={handleLogout}
-          className="topnav__menu-item"
-        >
-          <LogOut className="topnav__menu-item-icon" size={16} strokeWidth={2} />
+        <MenuItem onClick={handleLogout} className="topnav__menu-item">
+          <LogOut
+            className="topnav__menu-item-icon"
+            size={16}
+            strokeWidth={2}
+          />
           Log out
         </MenuItem>
       </Menu>
