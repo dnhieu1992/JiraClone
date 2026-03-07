@@ -121,6 +121,15 @@
   --sidebar-item-label-start-x-min: 86px;
   --sidebar-item-label-start-x-max: 90px;
 
+  /* create space wizard + board layout */
+  --create-space-max-width: 1120px;
+  --create-space-mobile-max-width: 520px;
+  --create-space-template-card-min-height: 224px;
+  --create-space-template-media-height: 88px;
+  --create-space-template-column-min-height: 120px;
+  --create-space-footer-button-min-width: 128px;
+  --kanban-column-min-height: 420px;
+
   /* sidebar colors (light) */
   --sidebar-c-bg: 255 255 255;
   --sidebar-c-divider: 221 221 221;
@@ -163,7 +172,7 @@ html[data-theme='dark'] {
   --color-surface-subtle: 36 37 40;
   --color-surface-hover: 43 44 47;
   --color-surface-raised: 36 37 40;
-  --ds-surface-sunken: #18191A;
+  --ds-surface-sunken: #18191a;
 
   /* text / icon */
   --color-text: 206 207 210;
@@ -278,6 +287,15 @@ html[data-theme='dark'] {
   --sidebar-header-icon-size-max: 24px;
   --sidebar-item-label-start-x-min: 86px;
   --sidebar-item-label-start-x-max: 90px;
+
+  /* create space wizard + board layout */
+  --create-space-max-width: 1120px;
+  --create-space-mobile-max-width: 520px;
+  --create-space-template-card-min-height: 224px;
+  --create-space-template-media-height: 88px;
+  --create-space-template-column-min-height: 120px;
+  --create-space-footer-button-min-width: 128px;
+  --kanban-column-min-height: 420px;
 
   /* sidebar colors (dark) */
   --sidebar-c-bg: 31 31 33;

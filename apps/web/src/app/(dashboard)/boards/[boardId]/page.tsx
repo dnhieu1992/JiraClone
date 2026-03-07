@@ -6,7 +6,7 @@ type Props = { params: { boardId: string } };
 export default function BoardPage({ params }: Props) {
   return (
     <Box>
-      <BoardTabs />
+      <BoardTabs boardId={params.boardId} />
     </Box>
   );
 }

@@ -8,7 +8,11 @@ import TabPanel from '@/components/ui/TabPanel';
 import Tabs from '@mui/material/Tabs';
 import KanbanBoard from './KanbanBoard';
 
-export default function BoardTabs() {
+type BoardTabsProps = {
+  boardId: string;
+};
+
+export default function BoardTabs({ boardId }: BoardTabsProps) {
   const [value, setValue] = React.useState<number>(0);
 
   return (
@@ -18,7 +22,7 @@ export default function BoardTabs() {
       </Tabs>
 
       <TabPanel value={value} index={0}>
-        <KanbanBoard />
+        <KanbanBoard boardId={boardId} />
       </TabPanel>
     </Box>
   );
