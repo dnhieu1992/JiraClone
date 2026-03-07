@@ -9,6 +9,8 @@ import { validateEnv } from './config/env.validation';
 import { AuthModule } from './modules/auth/auth.module';
 import { UsersModule } from './modules/users/users.module';
 import { DataSource } from 'typeorm';
+import { SpacesModule } from './modules/spaces/spaces.module';
+import { IssuesModule } from './modules/issues/issues.module';
 
 @Module({
   imports: [
@@ -24,6 +26,8 @@ import { DataSource } from 'typeorm';
     HealthModule,
     AuthModule,
     UsersModule,
+    SpacesModule,
+    IssuesModule,
   ],
   providers: [
     {

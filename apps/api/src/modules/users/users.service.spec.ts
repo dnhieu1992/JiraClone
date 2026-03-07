@@ -11,7 +11,10 @@ type KeycloakUsers = {
   find: (options?: { search?: string }) => Promise<unknown[]>;
   findOne: (params: { id: string }) => Promise<unknown>;
   create: (payload: Record<string, unknown>) => Promise<{ id: string }>;
-  update: (params: { id: string }, payload: Record<string, unknown>) => Promise<void>;
+  update: (
+    params: { id: string },
+    payload: Record<string, unknown>,
+  ) => Promise<void>;
   del: (params: { id: string }) => Promise<void>;
   resetPassword: (params: {
     id: string;
@@ -25,7 +28,9 @@ type KeycloakClient = {
 
 describe('UsersService', () => {
   let service: UsersService;
-  let keycloakAdmin: { getClient: jest.Mock<Promise<KeycloakClient>> };
+  let keycloakAdmin: {
+    getClient: jest.MockedFunction<() => Promise<KeycloakClient>>;
+  };
   let usersApi: KeycloakUsers;
 
   beforeEach(async () => {
@@ -39,7 +44,9 @@ describe('UsersService', () => {
     };
 
     keycloakAdmin = {
-      getClient: jest.fn().mockResolvedValue({ users: usersApi }),
+      getClient: jest.fn().mockResolvedValue({
+        users: usersApi,
+      }) as jest.MockedFunction<() => Promise<KeycloakClient>>,
     };
 
     const moduleRef = await Test.createTestingModule({
