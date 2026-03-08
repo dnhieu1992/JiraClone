@@ -120,6 +120,8 @@
   --sidebar-header-icon-size-max: 24px;
   --sidebar-item-label-start-x-min: 86px;
   --sidebar-item-label-start-x-max: 90px;
+  --sidebar-submenu-indent: 12px;
+  --sidebar-submenu-list-indent: 12px;
 
   /* create space wizard + board layout */
   --create-space-max-width: 1120px;
@@ -287,6 +289,8 @@ html[data-theme='dark'] {
   --sidebar-header-icon-size-max: 24px;
   --sidebar-item-label-start-x-min: 86px;
   --sidebar-item-label-start-x-max: 90px;
+  --sidebar-submenu-indent: 12px;
+  --sidebar-submenu-list-indent: 12px;
 
   /* create space wizard + board layout */
   --create-space-max-width: 1120px;
